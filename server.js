@@ -4,7 +4,6 @@ const path = require('path');
 const app = express();
 const MongoClient = require('mongodb').MongoClient;
 const connectionStr = 'mongodb+srv://bental:shruWickfejeeg6@cluster0-sd7er.mongodb.net/wedding';
-// const connectionStr = 'mongodb+srv://bental:shruWickfejeeg6@cluster0-sd7er.mongodb.net/test?retryWrites=true';
 
 app.use(express.static(path.join(__dirname, 'build')));
 
