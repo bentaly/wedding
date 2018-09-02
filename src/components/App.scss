@@ -1,20 +1,22 @@
 .app {
-    text-align: center;
-    background-image: url('../imgs/floral_head.png');
-    background-position: center top, center top;
-    background-repeat: no-repeat, no-repeat;
+  text-align: center;
+  background-image: url('../imgs/floral_head.png');
+  background-position: center top, center top;
+  background-repeat: no-repeat, no-repeat;
+  .app-header {
     padding: 20px;
-    
-    .app-logo {
-        height: 100px;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    .app-title {
+      font-size: 1.5em;
+      display: flex;
+      flex-direction: column;
+      font-weight: 500;
+      & > span:nth-of-type(2) {
+        font-family: cursive;
+      }
     }
-    
-    .app-header {
-        padding: 20px;
-        
-        .app-title {
-            font-size: 1.5em;
-
-        }
-    }
+  }
 }
