@@ -1,0 +1,20 @@
+.app {
+    text-align: center;
+    background-image: url('../imgs/floral_head.png');
+    background-position: center top, center top;
+    background-repeat: no-repeat, no-repeat;
+    padding: 20px;
+    
+    .app-logo {
+        height: 100px;
+    }
+    
+    .app-header {
+        padding: 20px;
+        
+        .app-title {
+            font-size: 1.5em;
+
+        }
+    }
+}
