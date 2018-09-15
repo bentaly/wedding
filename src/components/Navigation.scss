@@ -1,14 +1,15 @@
 .navigation-container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  @media screen and (min-width: 768px) {
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 0 auto;
-    max-width: 768px;
-  }
-  @media screen and (min-width: 960px) {
-    max-width: 960px;
-  }
+    width: 100%; // dont display until 768
+    display: none;
+    @media screen and (min-width: 768px) {
+        display: flex;
+        flex-direction: column;
+        flex-direction: row;
+        justify-content: space-between;
+        margin: 0 auto;
+        max-width: 768px;
+    }
+    @media screen and (min-width: 960px) {
+        max-width: 960px;
+    }
 }
