@@ -8,12 +8,13 @@ class Login extends Component {
     this.state = {};
   }
 
-  handleSubmit() {
+  handleSubmit(event) {
     const guestType = this.state.value.toLowerCase();
     if (guestType === 'day' || guestType === 'evening') {
       this.props.submitPassword(this.state.value);
     } else {
       this.setState({ error: 'Incorrect password' });
+      event.preventDefault();
     }
   }
 
