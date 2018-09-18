@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './SiteContainer.css';
 import { BrowserRouter } from 'react-router-dom';
 import RoutingComponent from './RoutingComponent';
 import Navigation from './Navigation';
@@ -8,11 +8,12 @@ import RSVP from './Rsvp';
 import Accomodation from './Accomodation';
 import Travel from './Travel';
 import GiftRegistry from './GiftRegistry';
+import LoginScreen from './Login';
 
-class App extends Component {
+class SiteContainer extends Component {
   constructor() {
     super();
-
+    this.state = {};
     this.routes = [
       {
         label: 'The Big Day',
@@ -42,23 +43,37 @@ class App extends Component {
     ];
   }
 
+  componentDidMount() {
+    this.changeGuestType(window.localStorage.getItem('cambenweddingguest'));
+  }
+
+  changeGuestType(guestType) {
+    this.setState({
+      guestType
+    });
+  }
+
   render() {
-    return (
-      <BrowserRouter>
-        <div className="app">
-          <header className="app-header">
-            <h1 className="app-title">
-              <span>Camila</span>
-              <span>and</span>
-              <span>Benjamin</span>
-            </h1>
-            <Navigation routes={this.routes} />
-          </header>
-          <RoutingComponent routes={this.routes} />
-        </div>
-      </BrowserRouter>
-    );
+    if (this.state.guestType) {
+      return (
+        <BrowserRouter>
+          <div className="app">
+            <header className="app-header">
+              <h1 className="app-title">
+                <span>Camila</span>
+                <span>and</span>
+                <span>Benjamin</span>
+              </h1>
+              <Navigation routes={this.routes} />
+            </header>
+            <RoutingComponent routes={this.routes} />
+          </div>
+        </BrowserRouter>
+      );
+    } else {
+      return <LoginScreen submitPassword={this.changeGuestType.bind(this)} />;
+    }
   }
 }
 
-export default App;
+export default SiteContainer;
