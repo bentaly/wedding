@@ -3,11 +3,25 @@ import padlock from '../locked.svg';
 import './Login.css';
 
 class Login extends Component {
-  handleSubmit() {
-    this.props.submitPassword(this.state.value);
+  constructor(props) {
+    super(props);
+    this.state = {};
   }
+
+  handleSubmit() {
+    const guestType = this.state.value.toLowerCase();
+    if (guestType === 'day' || guestType === 'evening') {
+      this.props.submitPassword(this.state.value);
+    } else {
+      this.setState({ error: 'Incorrect password' });
+    }
+  }
+
   handleChange(event) {
-    this.setState({ value: event.target.value });
+    this.setState({
+      value: event.target.value,
+      error: null
+    });
   }
 
   render() {
@@ -20,6 +34,7 @@ class Login extends Component {
             <input type="password" onChange={this.handleChange.bind(this)} />
             <input type="submit" value="Submit" />
           </form>
+          {this.state.error && <div>{this.state.error}</div>}
         </div>
       </div>
     );

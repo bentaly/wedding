@@ -51,6 +51,10 @@ class SiteContainer extends Component {
     this.setState({
       guestType
     });
+
+    if (guestType) {
+      // window.localStorage.setItem('cambenweddingguest', guestType);
+    }
   }
 
   render() {
