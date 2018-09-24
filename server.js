@@ -65,7 +65,7 @@ function connectDb() {
   MongoClient.connect(
     connectionStr,
     function(err, client) {
-      const collection = client.db('test').collection('devices');
+      // const collection = client.db('test').collection('devices');
       // perform actions on the collection object
       if (client) {
         console.log('Connected!');
