@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import padlock from '../locked.svg';
 import './Login.css';
+import { FormattedMessage } from 'react-intl';
 
 class Login extends Component {
   constructor(props) {
@@ -30,7 +31,12 @@ class Login extends Component {
       <div className="login-container">
         <div>
           <img src={padlock} />
-          <h1>Enter your password</h1>
+          <h1>
+            <FormattedMessage
+              id="Login.welcome"
+              defaultMessage="Enter your password"
+            />
+          </h1>
           <form onSubmit={this.handleSubmit.bind(this)}>
             <input type="password" onChange={this.handleChange.bind(this)} />
             <input type="submit" value="Submit" />
