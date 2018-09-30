@@ -7,3 +7,38 @@ html {
     font-family: sans-serif; }
     html body #root {
       height: 100%; }
+      html body #root button {
+        font-size: 14px;
+        padding: 12px;
+        background: none;
+        position: relative;
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s linear; }
+        html body #root button:before, html body #root button:after {
+          transition: all 0.1s linear;
+          border: 2px solid black;
+          content: '';
+          position: absolute;
+          width: 100%;
+          height: 100%; }
+        html body #root button:after {
+          left: 0;
+          top: 0; }
+        html body #root button:before {
+          left: -4px;
+          top: -4px; }
+        html body #root button:focus {
+          outline: none; }
+        html body #root button:active {
+          border-style: none;
+          background-color: grey; }
+        html body #root button:hover:after, html body #root button:active:after {
+          left: 1px;
+          top: 1px; }
+        html body #root button:hover:before, html body #root button:active:before {
+          left: -5px;
+          top: -5px; }
+      html body #root .active {
+        background-color: black;
+        color: white; }

@@ -39,7 +39,7 @@ class Login extends Component {
           </h1>
           <form onSubmit={this.handleSubmit.bind(this)}>
             <input type="password" onChange={this.handleChange.bind(this)} />
-            <input type="submit" value="Submit" />
+            <button type="submit">Submit</button>
           </form>
           {this.state.error && <div>{this.state.error}</div>}
         </div>

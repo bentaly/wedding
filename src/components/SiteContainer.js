@@ -53,7 +53,7 @@ class SiteContainer extends Component {
     });
 
     if (guestType) {
-      // window.localStorage.setItem('cambenweddingguest', guestType);
+      window.localStorage.setItem('cambenweddingguest', guestType);
     }
   }
 
