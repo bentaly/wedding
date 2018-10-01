@@ -1,8 +1,20 @@
 .triangle {
-  fill: white;
+    fill: white;
 }
 
 line {
-  stroke-width: 2px;
-  stroke: black;
+    stroke-width: 2px;
+    stroke: black;
+}
+
+h6 {
+    text-decoration: underline;
+}
+
+.time {
+    font-size: 20px;
+}
+
+.plan {
+    font-size: 16px;
 }

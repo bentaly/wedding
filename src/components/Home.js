@@ -2,17 +2,75 @@ import React, { Component } from 'react';
 import './Home.css';
 
 class Home extends Component {
+  rsvp() {}
   render() {
     return (
       <div>
-        <div>Home</div>
         <ImageContainer src={'http://placekitten.com/200/300'} />
+        <h5>Please join us for our wedding elebration on</h5>
+        <img src={'http://placekitten.com/150/400'} />
+        <ThePlan />
+        <button onClick={this.rsvp}>RSVP</button>
       </div>
     );
   }
 
   imageContainer(src) {
     return <img src={src} />;
+  }
+}
+
+class ThePlan extends Component {
+  constructor(props) {
+    super(props);
+
+    this.planArr = [
+      {
+        time: '12:30',
+        label: 'Guests arrive at <a href="#">St. Mary\'s Church</a>'
+      },
+      {
+        time: '1PM',
+        label: 'Here comes the bride!'
+      },
+      {
+        time: '2:30',
+        label: 'Drinks and Canapes at Cripps Barn'
+      },
+      {
+        time: '4PM',
+        label: 'Lunch is served'
+      },
+      {
+        time: '7PM',
+        label: 'Get the party started!'
+      },
+      {
+        time: '9PM',
+        label: 'Evening Snacks'
+      },
+      {
+        time: '1AM',
+        label: 'Carriages'
+      }
+    ];
+  }
+
+  render() {
+    return (
+      <div>
+        <h6>The Plan</h6>
+        {this.planArr.map(planItem => (
+          <div key={planItem.time}>
+            <span className="time">{planItem.time}</span>
+            <span
+              className="plan"
+              dangerouslySetInnerHTML={{ __html: planItem.label }}
+            />
+          </div>
+        ))}
+      </div>
+    );
   }
 }
 

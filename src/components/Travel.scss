@@ -1,0 +1,9 @@
+.hotels-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    &>div {
+        flex-basis: 33%;
+        flex-shrink: 0;
+    }
+}

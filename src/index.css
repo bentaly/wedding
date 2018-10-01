@@ -8,6 +8,8 @@ html {
     html body #root {
       height: 100%; }
       html body #root button {
+        text-transform: uppercase;
+        font-weight: bold;
         font-size: 14px;
         padding: 12px;
         background: none;

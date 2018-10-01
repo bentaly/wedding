@@ -46,7 +46,7 @@ class RSVP extends Component {
           </select>
         </label>
 
-        <input type="submit" value="Submit" />
+        <button type="submit">Submit</button>
       </form>
     );
   }
