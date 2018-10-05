@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Navigation.css';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 class Navigation extends Component {
   render() {
@@ -9,7 +9,7 @@ class Navigation extends Component {
         <div className="navigation-container">
           {this.props.routes.map(route => (
             <nav key={route.route}>
-              <Link to={route.route}>{route.label}</Link>
+              <NavLink to={route.route}>{route.label}</NavLink>
             </nav>
           ))}
         </div>
