@@ -27,25 +27,32 @@ class RSVP extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <label>
-          Name:
-          <input
-            type="text"
-            value={this.state.value}
-            onChange={this.handleChange}
-          />
-        </label>
-        <label>
-          Food:
-          <select onChange={this.handleChange}>
-            {this.dietaryOptions.map(diet => (
-              <option key={diet} value={diet}>
-                {diet}
-              </option>
-            ))}
-          </select>
-        </label>
-
+        <div>
+          <label>
+            Name:
+            <input
+              type="text"
+              value={this.state.value}
+              onChange={this.handleChange}
+            />
+          </label>
+          <label>
+            Food:
+            <select onChange={this.handleChange}>
+              {this.dietaryOptions.map(diet => (
+                <option key={diet} value={diet}>
+                  {diet}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+        <div>
+          I am excited to confirm I will be joining your wedding celebration on
+          May 19th. After the ceremony at St. Mary’s Church, I will need a lift
+          to Cripps Barn. Please tell the chef to prepare some tasty vegan food,
+          so I can party all night long.
+        </div>
         <button type="submit">Submit</button>
       </form>
     );

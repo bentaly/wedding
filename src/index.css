@@ -41,6 +41,6 @@ html {
         html body #root button:hover:before, html body #root button:active:before {
           left: -5px;
           top: -5px; }
-      html body #root .active {
-        background-color: black;
-        color: white; }
+        html body #root button.active {
+          background-color: black;
+          color: white; }
