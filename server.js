@@ -4,7 +4,7 @@ const path = require('path');
 const app = express();
 const MongoClient = require('mongodb').MongoClient;
 const connectionStr =
-  'mongodb+srv://bental:shruWickfejeeg6@cluster0-sd7er.mongodb.net/wedding';
+  'mongodb+srv://bental:Taly21Mdb!@cluster0-sd7er.mongodb.net/wedding';
 
 app.use(express.static(path.join(__dirname, 'build')));
 
@@ -16,6 +16,27 @@ app.get('/ping', function(req, res) {
   return res.send(obj);
 });
 
+// call /guests?like=ea foe leah
+app.get('/guests', function(req, res) {
+  const { like } = req.query;
+  MongoClient.connect(
+    connectionStr,
+    function(err, db) {
+      const database = db.db('guests');
+      database
+        .collection('people')
+        .find({ name: new RegExp(like, 'i') })
+        .toArray((error, docs) => {
+          if (err || error) {
+            return res.send(err || error);
+          } else {
+            return res.send(docs);
+          }
+        });
+    }
+  );
+});
+
 app.get('/read', function(req, res) {
   MongoClient.connect(
     connectionStr,
@@ -25,8 +46,8 @@ app.get('/read', function(req, res) {
         .collection('people')
         .find({})
         .toArray((error, docs) => {
-          if (err) {
-            return res.send(err);
+          if (err || error) {
+            return res.send(err || error);
           } else {
             return res.send(docs);
           }
@@ -42,13 +63,17 @@ app.get('/insert', function(req, res) {
       const database = client.db('guests');
 
       database.createCollection('people', function(error, collection) {
-        const obj = {
-          name: 'Migo',
-          diet: 'vegano'
-        };
+        if (err || error) {
+          return res.send(err || error);
+        } else {
+          const obj = {
+            name: 'Migo',
+            diet: 'vegano'
+          };
 
-        collection.insertOne(obj);
-        return res.send('cool');
+          collection.insertOne(obj);
+          return res.send('cool');
+        }
       });
     }
   );

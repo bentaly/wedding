@@ -9,6 +9,7 @@ import Accomodation from './Accomodation';
 import Travel from './Travel';
 import GiftRegistry from './GiftRegistry';
 import LoginScreen from './Login';
+import Admin from './Admin';
 
 class SiteContainer extends Component {
   constructor() {
@@ -39,6 +40,10 @@ class SiteContainer extends Component {
         label: 'Gift Registry',
         route: '/giveusstuff',
         component: GiftRegistry
+      },
+      {
+        route: '/admin',
+        component: Admin
       }
     ];
   }
