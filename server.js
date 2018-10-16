@@ -8,24 +8,25 @@ const connectionStr =
 
 app.use(express.static(path.join(__dirname, 'build')));
 
-app.get('/ping', function(req, res) {
-  const obj = {
-    something: 1,
-    else: 'test'
-  };
-  return res.send(obj);
-});
-
-// call /guests?like=ea foe leah
+// call /guests?like=ea for leah
+// call /guests?group=1 for group 1, duh
 app.get('/guests', function(req, res) {
-  const { like } = req.query;
+  const { like, group } = req.query;
+  let filter = {};
+
+  if (like) {
+    filter = { name: new RegExp(like, 'i') };
+  } else if (group) {
+    filter = { group: parseInt(group, 10) };
+  }
+
   MongoClient.connect(
     connectionStr,
     function(err, db) {
       const database = db.db('guests');
       database
         .collection('people')
-        .find({ name: new RegExp(like, 'i') })
+        .find(filter)
         .toArray((error, docs) => {
           if (err || error) {
             return res.send(err || error);
@@ -86,6 +87,7 @@ app.get('/', function(req, res) {
 app.listen(process.env.PORT || 8080);
 connectDb();
 
+// do we need this?
 function connectDb() {
   MongoClient.connect(
     connectionStr,

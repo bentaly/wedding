@@ -1,0 +1,13 @@
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 980px;
+    margin: 20px auto;
+    .guest-select {
+        text-align: left;
+    }
+    .guest-row {
+        display: flex;
+        flex-direction: row;
+    }
+}

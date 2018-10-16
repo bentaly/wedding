@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Admin.css';
 
 class Admin extends Component {
   constructor(props) {
@@ -25,13 +26,32 @@ class Admin extends Component {
       );
   }
 
+  getRsvp(guest) {
+    if (typeof guest.rsvp === 'undefined') {
+      return '';
+    } else {
+      return guest.rsvp ? 'Coming' : "Can't come";
+    }
+  }
+
   render() {
     return (
-      <div>
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Group</th>
+          <th>Coming</th>
+          <th>Meal</th>
+        </tr>
         {this.state.guests.map(guest => (
-          <div key={guest._id}>{guest.name}</div>
+          <tr key={guest._id}>
+            <td>{guest.name}</td>
+            <td>{guest.group}</td>
+            <td>{this.getRsvp(guest)}</td>
+            <td>{guest.meal || ''}</td>
+          </tr>
         ))}
-      </div>
+      </table>
     );
   }
 }
