@@ -10,18 +10,18 @@ class RSVP extends Component {
       inputValue: null,
       value: '',
       guestsInGroup: [],
+      numberOfCoachSpaces: 0,
       isLoading: false
     };
     this.rvspOptions = [
-      { value: "I'm Coming", label: "I'm Coming" },
-      { value: "Can't come", label: "Can't come" }
+      { value: true, label: "I'll be there" },
+      { value: false, label: "Can't come" }
     ];
     this.dietaryOptions = [
-      'Normal people',
-      'Veggie',
-      'Vegan',
-      'Gluten free',
-      'Other (please specify)'
+      { label: 'Anything', value: 'Anything' },
+      { label: 'Veggie', value: 'Vegetarian' },
+      { label: 'Vegan', value: 'Vegan' },
+      { label: 'Gluten free', value: 'GF' }
     ];
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -31,6 +31,10 @@ class RSVP extends Component {
     return window
       .fetch('/guests?group=' + group)
       .then(res => res.json())
+      .then(res => {
+        this.setState({ numberOfCoachSpaces: res.length });
+        return res;
+      })
       .catch(error => console.error(error));
   }
 
@@ -45,7 +49,7 @@ class RSVP extends Component {
     event.preventDefault();
   }
 
-  promiseOptions(inputValue) {
+  getGuestOptions(inputValue) {
     this.setState({ isLoading: true });
 
     return window
@@ -53,7 +57,10 @@ class RSVP extends Component {
       .then(res => res.json())
       .then(
         result => {
-          this.setState({ isLoading: true });
+          this.setState({
+            isLoading: false
+          });
+
           return result.map(guest => {
             return {
               value: guest.name,
@@ -68,6 +75,56 @@ class RSVP extends Component {
 
   handleRsvpChange(rsvpVal, guest) {
     guest.rsvp = rsvpVal.value;
+    this.setState({
+      guestsInGroup: this.state.guestsInGroup.map(guestInGroup => {
+        if (guestInGroup._id === guest._id) {
+          return guest;
+        } else {
+          return guestInGroup;
+        }
+      })
+    });
+  }
+
+  addGuest() {
+    this.state.guestsInGroup.push({});
+    this.setState({ guestsInGroup: this.state.guestsInGroup });
+  }
+
+  guestRow(guest) {
+    return (
+      <div className="guest-row" key={guest._id}>
+        {guest._id ? (
+          <label>{guest.name}</label>
+        ) : (
+          <input className="name-entry" type="text" placeholder="Enter name" />
+        )}
+        <Select
+          placeholder="You coming?"
+          className="rsvp-value"
+          isClearable={false}
+          isSearchable={false}
+          onChange={value => this.handleRsvpChange(value, guest)}
+          name="rsvp-value"
+          options={this.rvspOptions}
+        />
+        {guest.rsvp && (
+          <Select
+            placeholder="What food (multiple allowed)"
+            isClearable={false}
+            className="diet-value"
+            isSearchable={false}
+            isMulti
+            name="dietary-value"
+            options={this.dietaryOptions}
+          />
+        )}
+      </div>
+    );
+  }
+
+  coachNumberChange(e) {
+    this.setState({ numberOfCoachSpaces: e.target.value });
   }
 
   render() {
@@ -80,41 +137,26 @@ class RSVP extends Component {
           isLoading={this.isLoading}
           onChange={this.userSearchChange.bind(this)}
           defaultOptions
-          loadOptions={this.promiseOptions.bind(this)}
+          loadOptions={this.getGuestOptions.bind(this)}
         />
-        {this.state.guestsInGroup.map(guest => {
-          return (
-            <div className="guest-row" key={guest._id}>
-              <label>{guest.name}</label>
-              <Select
-                placeholder="You coming?"
-                isClearable={false}
-                isSearchable={false}
-                onChange={value => this.handleRsvpChange(value, guest)}
-                name="rsvp-value"
-                options={this.rvspOptions}
-              />
-              {guest.rsvp && (
-                <Select
-                  defaultValue={this.dietaryOptions[0]}
-                  isClearable={false}
-                  isSearchable={false}
-                  // onChange={this.handleChange}
-                  name="dietary-value"
-                  options={this.dietaryOptions}
-                />
-              )}
+        {this.state.guestsInGroup.length > 0 && (
+          <div className="guest-rows-container">
+            {this.state.guestsInGroup.map(guest => this.guestRow(guest))}
+            <a href="#" onClick={this.addGuest.bind(this)}>
+              + Add another guest
+            </a>
+            <div>
+              We will need{' '}
+              <input
+                type="number"
+                onChange={this.coachNumberChange.bind(this)}
+                value={this.state.numberOfCoachSpaces}
+              />{' '}
+              spaces in the coach going from the church to Cripps
             </div>
-          );
-        })}
-        {/*
-        <div>
-          I am excited to confirm I will be joining your wedding celebration on
-          May 19th. After the ceremony at St. Mary’s Church, I will need a lift
-          to Cripps Barn. Please tell the chef to prepare some tasty vegan food,
-          so I can party all night long.
-        </div>
-        <button type="submit">Submit</button> */}
+            <button type="submit">Submit</button>
+          </div>
+        )}
       </form>
     );
   }

@@ -3,11 +3,63 @@ form {
     flex-direction: column;
     max-width: 980px;
     margin: 20px auto;
+    .guest-rows-container {
+        display: flex;
+        flex-direction: column;
+    }
     .guest-select {
         text-align: left;
+        margin-bottom: 20px;
     }
     .guest-row {
+        margin-bottom: 10px;
         display: flex;
         flex-direction: row;
+        align-items: center;
+        &>* {
+            text-align: left;
+        }
+        label {
+            width: 240px;
+        }
+        .name-entry,
+        .rsvp-value,
+        .diet-value {
+            width: 340px;
+        }
+        .rsvp-value {
+            margin-right: 10px;
+        }
+        .name-entry {
+            height: 38px;
+            padding: 4px 8px;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-right: 20px;
+            width: 220px;
+            color: hsl(0, 0%, 50%);
+            font-size: 16px;
+        }
+    }
+    button[type='submit'] {
+        align-self: flex-end;
+    }
+    a {
+        align-self: flex-start;
+        margin: 10px 0;
+    }
+    /* For Firefox */
+    input[type='number'] {
+        -moz-appearance: textfield;
+        padding: 5px;
+        width: 18px;
+        text-align: center;
+    }
+    /* Webkit browsers like Safari and Chrome */
+    input[type='number']::-webkit-inner-spin-button,
+    input[type='number']::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
     }
 }
