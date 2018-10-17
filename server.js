@@ -5,12 +5,14 @@ const app = express();
 const MongoClient = require('mongodb').MongoClient;
 const connectionStr =
   'mongodb+srv://bental:Taly21Mdb!@cluster0-sd7er.mongodb.net/wedding';
+const ObjectID = require('mongodb').ObjectID;
 
 app.use(express.static(path.join(__dirname, 'build')));
+app.use(bodyParser());
 
 // call /guests?like=ea for leah
 // call /guests?group=1 for group 1, duh
-app.get('/guests', function(req, res) {
+app.get('/guests', (req, res) => {
   const { like, group } = req.query;
   let filter = {};
 
@@ -22,7 +24,7 @@ app.get('/guests', function(req, res) {
 
   MongoClient.connect(
     connectionStr,
-    function(err, db) {
+    (err, db) => {
       const database = db.db('guests');
       database
         .collection('people')
@@ -38,69 +40,40 @@ app.get('/guests', function(req, res) {
   );
 });
 
-app.get('/read', function(req, res) {
+app.post('/update-guests', (req, res) => {
   MongoClient.connect(
     connectionStr,
-    function(err, db) {
+    (err, db) => {
+      if (err) {
+        res.send(err);
+      }
       const database = db.db('guests');
-      database
-        .collection('people')
-        .find({})
-        .toArray((error, docs) => {
-          if (err || error) {
-            return res.send(err || error);
-          } else {
-            return res.send(docs);
-          }
-        });
-    }
-  );
-});
-
-app.get('/insert', function(req, res) {
-  MongoClient.connect(
-    connectionStr,
-    function(err, client) {
-      const database = client.db('guests');
-
-      database.createCollection('people', function(error, collection) {
-        if (err || error) {
-          return res.send(err || error);
+      for (const guest of req.body) {
+        if (guest.new) {
+          delete guest._id;
+          database.collection('people').insertOne(guest);
         } else {
-          const obj = {
-            name: 'Migo',
-            diet: 'vegano'
-          };
-
-          collection.insertOne(obj);
-          return res.send('cool');
+          database.collection('people').updateOne(
+            { _id: ObjectID(guest._id) },
+            { $set: getUserWithoutId(guest) },
+            {
+              upsert: true
+            }
+          );
         }
-      });
+      }
+
+      res.send(200);
     }
   );
 });
 
+const getUserWithoutId = user => {
+  delete user._id;
+  return user;
+};
 app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 app.listen(process.env.PORT || 8080);
-connectDb();
-
-// do we need this?
-function connectDb() {
-  MongoClient.connect(
-    connectionStr,
-    function(err, client) {
-      // const collection = client.db('test').collection('devices');
-      // perform actions on the collection object
-      if (client) {
-        console.log('Connected!');
-      } else {
-        console.log('err');
-        console.log(err);
-      }
-      client.close();
-    }
-  );
-}

@@ -37,20 +37,24 @@ class Admin extends Component {
   render() {
     return (
       <table>
-        <tr>
-          <th>Name</th>
-          <th>Group</th>
-          <th>Coming</th>
-          <th>Meal</th>
-        </tr>
-        {this.state.guests.map(guest => (
-          <tr key={guest._id}>
-            <td>{guest.name}</td>
-            <td>{guest.group}</td>
-            <td>{this.getRsvp(guest)}</td>
-            <td>{guest.meal || ''}</td>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Group</th>
+            <th>Coming</th>
+            <th>Meal</th>
           </tr>
-        ))}
+        </thead>
+        <tbody>
+          {this.state.guests.map(guest => (
+            <tr key={guest._id}>
+              <td>{guest.name}</td>
+              <td>{guest.group}</td>
+              <td>{this.getRsvp(guest)}</td>
+              <td>{(guest.diet && guest.diet.join(', ')) || ''}</td>
+            </tr>
+          ))}
+        </tbody>
       </table>
     );
   }

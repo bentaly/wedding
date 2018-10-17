@@ -7,8 +7,6 @@ class RSVP extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputValue: null,
-      value: '',
       guestsInGroup: [],
       numberOfCoachSpaces: 0,
       isLoading: false
@@ -28,6 +26,7 @@ class RSVP extends Component {
   }
 
   getGuestsByGroup(group) {
+    this.group = group;
     return window
       .fetch('/guests?group=' + group)
       .then(res => res.json())
@@ -45,7 +44,26 @@ class RSVP extends Component {
   }
 
   handleSubmit(event) {
-    console.log('A name was submitted: ' + this.state.value);
+    this.setState({ isLoading: true });
+
+    console.log(this.state.guestsInGroup);
+    window
+      .fetch('/update-guests', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(
+          this.state.guestsInGroup.filter(guest => guest.name)
+        )
+      })
+      .then(() =>
+        this.setState({
+          isLoading: false,
+          submitted: true
+        })
+      );
     event.preventDefault();
   }
 
@@ -73,8 +91,40 @@ class RSVP extends Component {
       );
   }
 
-  handleRsvpChange(rsvpVal, guest) {
-    guest.rsvp = rsvpVal.value;
+  handleRsvpChange(attr, rsvpVal, guest) {
+    guest[attr] = Array.isArray(rsvpVal)
+      ? rsvpVal.map(val => val.value)
+      : rsvpVal.value;
+    const updatedState = {
+      guestsInGroup: this.state.guestsInGroup.map(guestInGroup => {
+        if (guestInGroup._id === guest._id) {
+          return guest;
+        } else {
+          return guestInGroup;
+        }
+      })
+    };
+
+    if (attr === 'rsvp') {
+      updatedState.numberOfCoachSpaces = this.state.guestsInGroup.filter(
+        guestInGroup => guestInGroup.rsvp
+      ).length;
+    }
+
+    this.setState(updatedState);
+  }
+
+  addGuest() {
+    this.state.guestsInGroup.push({
+      _id: Math.random(),
+      new: true,
+      group: this.group
+    });
+    this.setState({ guestsInGroup: this.state.guestsInGroup });
+  }
+
+  updateGuestName(e, guest) {
+    guest.name = e.target.value;
     this.setState({
       guestsInGroup: this.state.guestsInGroup.map(guestInGroup => {
         if (guestInGroup._id === guest._id) {
@@ -86,25 +136,25 @@ class RSVP extends Component {
     });
   }
 
-  addGuest() {
-    this.state.guestsInGroup.push({});
-    this.setState({ guestsInGroup: this.state.guestsInGroup });
-  }
-
   guestRow(guest) {
     return (
       <div className="guest-row" key={guest._id}>
-        {guest._id ? (
+        {!guest.new ? (
           <label>{guest.name}</label>
         ) : (
-          <input className="name-entry" type="text" placeholder="Enter name" />
+          <input
+            className="name-entry"
+            type="text"
+            onChange={e => this.updateGuestName(e, guest)}
+            placeholder="Enter name"
+          />
         )}
         <Select
           placeholder="You coming?"
           className="rsvp-value"
           isClearable={false}
           isSearchable={false}
-          onChange={value => this.handleRsvpChange(value, guest)}
+          onChange={value => this.handleRsvpChange('rsvp', value, guest)}
           name="rsvp-value"
           options={this.rvspOptions}
         />
@@ -116,6 +166,7 @@ class RSVP extends Component {
             isSearchable={false}
             isMulti
             name="dietary-value"
+            onChange={value => this.handleRsvpChange('diet', value, guest)}
             options={this.dietaryOptions}
           />
         )}
@@ -134,11 +185,12 @@ class RSVP extends Component {
           className="guest-select"
           placeholder="Select one of your group"
           cacheOptions
-          isLoading={this.isLoading}
+          isLoading={this.state.isLoading}
           onChange={this.userSearchChange.bind(this)}
           defaultOptions
           loadOptions={this.getGuestOptions.bind(this)}
         />
+        {this.state.isLoading && <div className="loading">Loading</div>}
         {this.state.guestsInGroup.length > 0 && (
           <div className="guest-rows-container">
             {this.state.guestsInGroup.map(guest => this.guestRow(guest))}
