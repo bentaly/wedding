@@ -14,6 +14,7 @@ class Travel extends Component {
             'area': 'Barnsley',
             'phone': '01285 740000',
             'website': 'barnsleyhouse.com',
+            'websiteLabel': 'barnsleyhouse.com',
             'map': 'https://goo.gl/maps/nirjixk1CQU2'
           },
           {
@@ -21,6 +22,7 @@ class Travel extends Component {
             'area': 'Cirencester',
             'phone': '44 (0) 1285 700 900',
             'website': 'kingshead-hotel.co.uk',
+            'websiteLabel': 'kingshead-hotel.co.uk',
             'map': 'https://goo.gl/maps/md3sK32yPmA2'
           },
           {
@@ -28,6 +30,7 @@ class Travel extends Component {
             'area': 'Cirencester',
             'phone': '+44 (0) 1285 864 000',
             'website': 'https://www.phcompany.com/de-vere/cotswold-water-park-hotel/?utm_source=google&utm_medium=local&utm_campaign=localSEO',
+            'websiteLabel': 'phcompany.com',
             'map': 'https://goo.gl/maps/s8JhgGXK1vE2'
           },
           {
@@ -35,6 +38,7 @@ class Travel extends Component {
             'area': 'Cirencester',
             'phone': '0871 527 9674',
             'website': 'https://www.premierinn.com/gb/en/hotels/england/gloucestershire/cirencester/cirencester.html',
+            'websiteLabel': 'premierinn.com',
             'map': 'https://goo.gl/maps/7ru59K1u2PP2'
           },
           {
@@ -42,6 +46,7 @@ class Travel extends Component {
             'area': 'Cirencester',
             'phone': '+44 (0) 1285 650231',
             'website': 'https://www.thefleececirencester.co.uk/?utm_source=google&utm_medium=gmb',
+            'websiteLabel': 'thefleececirencester.co.uk',
             'map': 'https://goo.gl/maps/ET87FTpWdjP2'
           },
           {
@@ -49,6 +54,7 @@ class Travel extends Component {
             'area': 'Fairford',
             'phone': '+44 (0) 1285 712535',
             'website': 'http://www.thebullhotelfairford.co.uk/',
+            'websiteLabel': 'thebullhotelfairford.co.uk',
             'map': 'https://goo.gl/maps/zgjmTRZkHgB2'
           },
           {
@@ -56,6 +62,7 @@ class Travel extends Component {
             'area': 'Cirencester',
             'phone': '+44 (0) 871 984 6233',
             'website': 'https://www.travelodge.co.uk/hotels/86/Cirencester-hotel?WT.tsrc=GHA_Organic&utm_campaign=GHA_Cirencester&utm_medium=GHA_Organic&utm_source=google',
+            'websiteLabel': 'travelodge.co.uk',
             'map': 'https://goo.gl/maps/VWQEt99eSK52'
           },
           {
@@ -63,6 +70,7 @@ class Travel extends Component {
             'area': 'Bibury',
             'phone': '+44 (0) 1285 740695',
             'website': 'https://www.cotswold-inns-hotels.co.uk/the-swan-hotel//',
+            'websiteLabel': 'cotswold-inns-hotels.co.uk',
             'map': 'https://goo.gl/maps/TEjTH1BiD6L2'
           }
         ]
@@ -75,6 +83,7 @@ class Travel extends Component {
             'area': 'Quenington',
             'phone': '+44 (0) 1285 750651',
             'website': 'http://www.new-inn.co.uk/',
+            'websiteLabel': 'new-inn.co.uk',
             'map': 'https://goo.gl/maps/mGdCQupn9k32'
           },
           {
@@ -82,6 +91,7 @@ class Travel extends Component {
             'area': 'Foss Cross',
             'phone': '+44 (0) 1285 720288',
             'website': 'http://www.hareandhoundsinn.com/',
+            'websiteLabel': 'hareandhoundsinn.com',
             'map': 'https://goo.gl/maps/P3q6x6KM5ez'
           },
           {
@@ -89,6 +99,7 @@ class Travel extends Component {
             'area': 'Maysey Hampton',
             'phone': '+44 (0) 1285 850164',
             'website': 'http://www.masonsarmsmeyseyhampton.com/',
+            'websiteLabel': 'masonsarmsmeyseyhampton.com',
             'map': 'https://goo.gl/maps/DRoNUamFXkn'
           },
           {
@@ -96,6 +107,7 @@ class Travel extends Component {
             'area': 'Quenington',
             'phone': '+44 (0) 1285 750349',
             'website': 'http://www.thekeepersarms.co.uk/',
+            'websiteLabel': 'thekeepersarms.co.uk',
             'map': 'https://goo.gl/maps/GhEcJmXivKk'
           }
         ]
@@ -108,6 +120,7 @@ class Travel extends Component {
             'area': 'Cirencester',
             'phone': '+44 (0) 1285 656099',
             'website': 'http://www.theoldbrewhouse.com/',
+            'websiteLabel': 'theoldbrewhouse.com',
             'map': 'https://goo.gl/maps/8ArSae6A9bT2'
           },
           {
@@ -115,6 +128,7 @@ class Travel extends Component {
             'area': 'Cirencester',
             'phone': '+44 (0) 1285 656626',
             'website': 'http://www.ivyhousecotswolds.com/',
+            'websiteLabel': 'ivyhousecotswolds.com',
             'map': 'https://goo.gl/maps/yryQnX2M4Km'
           },
           {
@@ -122,6 +136,7 @@ class Travel extends Component {
             'area': 'Cirencester',
             'phone': '+44 (0) 1285 659711',
             'website': 'https://www.coriniumhotel.com/',
+            'websiteLabel': 'coriniumhotel.com',
             'map': 'https://goo.gl/maps/iAx6hUrFU8F2'
           }
         ]
@@ -162,7 +177,7 @@ class Hotel extends Component {
             {this.svgIcon()}
           </div>
           <a href={'tel:' + this.props.data.phone}>{this.props.data.phone}</a>
-          <a href={this.props.data.website}>{this.props.data.website}</a>
+          <a href={this.props.data.website}>{this.props.data.websiteLabel}</a>
         </div>
       </div>
     );

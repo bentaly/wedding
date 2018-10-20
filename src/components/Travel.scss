@@ -1,6 +1,13 @@
 .places-to-stay {
     padding: 40px 20px;
+
+    h2, h3 {
+        text-transform: uppercase;
+    }
+
     .places-container {
+        max-width: 900px;
+        margin: 0 auto;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
@@ -21,9 +28,10 @@
                     display: flex;
                     flex-direction: row;
                     align-items: center; 
-                                span {
-                                    margin-right: 10px;
-                                }
+                    
+                    span {
+                        margin-right: 10px;
+                    }
                 }
             }
         }
