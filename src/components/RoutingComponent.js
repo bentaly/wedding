@@ -10,7 +10,7 @@ class RoutingComponent extends Component {
             key={route.route}
             exact={true}
             path={route.route}
-            component={route.component}
+            render={() => route.component}
           />
         ))}
       </div>

@@ -5,8 +5,7 @@ import RoutingComponent from './RoutingComponent';
 import Navigation from './Navigation';
 import Home from './Home';
 import RSVP from './Rsvp';
-import Accomodation from './Accomodation';
-import Travel from './Travel';
+import Info from './Info';
 import GiftRegistry from './GiftRegistry';
 import LoginScreen from './Login';
 import Admin from './Admin';
@@ -19,51 +18,56 @@ class SiteContainer extends Component {
       {
         label: 'The Big Day',
         route: '/',
-        component: Home
+        component: <Home />
       },
       {
         label: 'RSVP',
         route: '/rsvp',
-        component: RSVP
+        component: <RSVP />
       },
       {
-        label: 'Accomodation',
-        route: '/accomodation',
-        component: Accomodation
-      },
-      {
-        label: 'Travel',
-        route: '/travel',
-        component: Travel
+        label: 'Info',
+        route: '/info',
+        component: <Info />
       },
       {
         label: 'Gift Registry',
         route: '/giveusstuff',
-        component: GiftRegistry
+        component: <GiftRegistry />
       },
       {
         route: '/admin',
-        component: Admin
+        component: <Admin />
       }
     ];
   }
 
   componentDidMount() {
-    this.changeGuestType(window.localStorage.getItem('cambenweddingguest'));
+    const guest = window.localStorage.getItem('cambenweddingguest');
+    this.changeGuestType(JSON.parse(guest));
   }
 
-  changeGuestType(guestType) {
+  changeGuestType(guest) {
     this.setState({
-      guestType
+      guest
     });
 
-    if (guestType) {
-      window.localStorage.setItem('cambenweddingguest', guestType);
+    if (guest) {
+      window.localStorage.setItem('cambenweddingguest', JSON.stringify(guest));
     }
   }
 
   render() {
-    if (this.state.guestType) {
+    if (this.state.guest) {
+      this.routes.map(route => {
+        if (route.route === '/rsvp') {
+          route.component = React.cloneElement(route.component, {
+            guest: this.state.guest
+          });
+        }
+        return route;
+      });
+
       return (
         <BrowserRouter>
           <div className="app">

@@ -1,9 +1,10 @@
 .navigation {
-    background-color: #eff2e9;
+    background-color: #49574C;
+    color: white;
     .navigation-container {
         width: 100%; // dont display until 768
         display: none;
-        padding: 10px;
+        padding: 10px 0;
         @media screen and (min-width: 768px) {
             display: flex;
             flex-direction: column;
@@ -24,11 +25,10 @@
             line-height: 40px;
             font-size: 20px;
             text-transform: uppercase;
-            font-weight: bold;
             text-decoration: none;
             &:active,
             &:visited {
-                color: initial;
+                color: white;
             }
             &.active {
                 justify-content: space-around;

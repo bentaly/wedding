@@ -4,23 +4,15 @@
   justify-content: center;
   align-items: center;
   height: 100%;
-  & > div {
+  form {
+    width: 500px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 500px;
-    form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      input {
-        padding: 4px;
-        margin-right: 4px;
-        margin-bottom: 8px;
-      }
-    }
-    img {
-      width: 40px;
+    align-items: stretch;
+    input {
+      padding: 4px;
+      margin-right: 4px;
+      margin-bottom: 8px;
     }
   }
 }

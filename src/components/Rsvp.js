@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
-import AsyncSelect from 'react-select/lib/Async';
 import './Rsvp.css';
 
 class RSVP extends Component {
@@ -9,7 +8,7 @@ class RSVP extends Component {
     this.state = {
       guestsInGroup: [],
       numberOfCoachSpaces: 0,
-      isLoading: false
+      isLoading: true
     };
     this.rvspOptions = [
       { value: true, label: "I'll be there" },
@@ -21,8 +20,10 @@ class RSVP extends Component {
       { label: 'Vegan', value: 'Vegan' },
       { label: 'Gluten free', value: 'GF' }
     ];
+  }
 
-    this.handleSubmit = this.handleSubmit.bind(this);
+  componentDidMount() {
+    this.getGuestsByGroup(this.props.guest.group);
   }
 
   getGuestsByGroup(group) {
@@ -30,23 +31,52 @@ class RSVP extends Component {
     return window
       .fetch('/guests?group=' + group)
       .then(res => res.json())
-      .then(res => {
-        this.setState({ numberOfCoachSpaces: res.length });
-        return res;
+      .then(guestsInGroup => {
+        this.transformToFE(guestsInGroup);
+
+        this.setState({
+          numberOfCoachSpaces: guestsInGroup.length,
+          guestsInGroup: guestsInGroup,
+          isLoading: false
+        });
+        return guestsInGroup;
       })
       .catch(error => console.error(error));
   }
 
-  userSearchChange(selectedUser) {
-    this.getGuestsByGroup(selectedUser.group).then(guestsInGroup => {
-      this.setState({ guestsInGroup });
+  transformToFE(guestsInGroup) {
+    guestsInGroup.map(guest => {
+      if (guest.diet) {
+        guest.diet = guest.diet.map(diet => {
+          const dietObj = this.dietaryOptions.find(opt => opt.value === diet);
+          return dietObj;
+        });
+      }
+      if (typeof guest.rsvp !== 'undefined') {
+        guest.rsvp = this.rvspOptions.find(opt => opt.value === guest.rsvp);
+      }
+      return guest;
     });
+  }
+
+  transformToBE(guestsInGroup) {
+    const data = JSON.parse(JSON.stringify(guestsInGroup));
+
+    data.filter(guest => guest.name)
+      .map(guest => {
+        guest.plusOne = guest.new;
+        delete guest.new;
+        guest.rsvp = guest.rsvp.value;
+        guest.diet = guest.diet.map(d => d.value);
+        return guest;
+      });
+
+    return data;
   }
 
   handleSubmit(event) {
     this.setState({ isLoading: true });
-
-    console.log(this.state.guestsInGroup);
+    const data = this.transformToBE(this.state.guestsInGroup);
     window
       .fetch('/update-guests', {
         method: 'POST',
@@ -54,9 +84,7 @@ class RSVP extends Component {
           Accept: 'application/json',
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(
-          this.state.guestsInGroup.filter(guest => guest.name)
-        )
+        body: JSON.stringify(data)
       })
       .then(() =>
         this.setState({
@@ -67,34 +95,8 @@ class RSVP extends Component {
     event.preventDefault();
   }
 
-  getGuestOptions(inputValue) {
-    this.setState({ isLoading: true });
-
-    return window
-      .fetch('/guests?like=' + inputValue)
-      .then(res => res.json())
-      .then(
-        result => {
-          this.setState({
-            isLoading: false
-          });
-
-          return result.map(guest => {
-            return {
-              value: guest.name,
-              label: guest.name,
-              group: guest.group
-            };
-          });
-        },
-        error => console.error(error)
-      );
-  }
-
   handleRsvpChange(attr, rsvpVal, guest) {
-    guest[attr] = Array.isArray(rsvpVal)
-      ? rsvpVal.map(val => val.value)
-      : rsvpVal.value;
+    guest[attr] = rsvpVal;
     const updatedState = {
       guestsInGroup: this.state.guestsInGroup.map(guestInGroup => {
         if (guestInGroup._id === guest._id) {
@@ -152,18 +154,22 @@ class RSVP extends Component {
         <Select
           placeholder="You coming?"
           className="rsvp-value"
+          defaultValue={guest.rsvp}
           isClearable={false}
           isSearchable={false}
           onChange={value => this.handleRsvpChange('rsvp', value, guest)}
           name="rsvp-value"
           options={this.rvspOptions}
         />
-        {guest.rsvp && (
+        {guest.rsvp &&
+          guest.rsvp.value && (
           <Select
             placeholder="What food (multiple allowed)"
             isClearable={false}
             className="diet-value"
             isSearchable={false}
+            defaultValue={guest.diet}
+            key={diet => diet || diet.value}
             isMulti
             name="dietary-value"
             onChange={value => this.handleRsvpChange('diet', value, guest)}
@@ -180,17 +186,9 @@ class RSVP extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <AsyncSelect
-          className="guest-select"
-          placeholder="Select one of your group"
-          cacheOptions
-          isLoading={this.state.isLoading}
-          onChange={this.userSearchChange.bind(this)}
-          defaultOptions
-          loadOptions={this.getGuestOptions.bind(this)}
-        />
-        {this.state.isLoading && <div className="loading">Loading</div>}
+      <form onSubmit={this.handleSubmit.bind(this)}>
+        {this.state.isLoading && <div className="message">Loading</div>}
+        {this.state.saved && <div className="message">Your changes have been saved</div> }
         {this.state.guestsInGroup.length > 0 && (
           <div className="guest-rows-container">
             {this.state.guestsInGroup.map(guest => this.guestRow(guest))}
@@ -206,7 +204,7 @@ class RSVP extends Component {
               />{' '}
               spaces in the coach going from the church to Cripps
             </div>
-            <button type="submit">Submit</button>
+            <button type="submit">Save</button>
           </div>
         )}
       </form>

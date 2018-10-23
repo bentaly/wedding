@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './Travel.css';
+import './Info.css';
 
-class Travel extends Component {
+class Info extends Component {
   constructor(props) {
     super(props);
 
@@ -67,4 +67,4 @@ class Hotel extends Component {
     );
   }
 }
-export default Travel;
+export default Info;

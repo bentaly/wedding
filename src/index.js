@@ -6,6 +6,7 @@ import { IntlProvider, addLocaleData } from 'react-intl';
 import en from 'react-intl/locale-data/en';
 import pt from 'react-intl/locale-data/pt';
 import localeData from './../build/locales/data.json';
+import footer from '../public/images/footer.png';
 
 addLocaleData([...en, ...pt]);
 
@@ -28,7 +29,12 @@ const messages =
 
 ReactDOM.render(
   <IntlProvider locale={language} messages={messages}>
-    <SiteContainer />
+    <div>
+      <SiteContainer />
+      <footer>
+        <img src={footer} />
+      </footer>
+    </div>
   </IntlProvider>,
   document.getElementById('root')
 );

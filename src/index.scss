@@ -1,10 +1,28 @@
+@font-face {
+    font-family: 'Sharp Sans';
+    src: url(fonts/SharpSans-Medium.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Sharp Sans';
+    src: url(fonts/SharpSans-Semibold.otf) format('opentype');
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: 'Sharp Sans';
+    src: url(fonts/SharpSans-Extrabold.otf) format('opentype');
+    font-weight: 700;
+}
+
 html {
     height: 100%;
     body {
-        height: 100%;
         margin: 0;
         padding: 0;
-        font-family: sans-serif;
+        font-family: 'Sharp Sans', sans-serif;
+        color: #3E5244;
+        font-weight: normal;
         #root {
             height: 100%;
             button {
@@ -57,6 +75,13 @@ html {
                     color: white;
                 }
             }
+        }
+
+        footer {
+            background-size: cover;
+            min-height: 250px;
+            background-repeat: no-repeat;
+            background-image: url('../public/images/footer.png');
         }
     }
 }

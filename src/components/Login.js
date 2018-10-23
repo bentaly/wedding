@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import padlock from '../locked.svg';
 import './Login.css';
 import { FormattedMessage } from 'react-intl';
+import AsyncSelect from 'react-select/lib/Async';
 
 class Login extends Component {
   constructor(props) {
@@ -10,39 +10,59 @@ class Login extends Component {
   }
 
   handleSubmit(event) {
-    const guestType = this.state.value.toLowerCase();
-    if (guestType === 'day' || guestType === 'evening') {
-      this.props.submitPassword(this.state.value);
-    } else {
-      this.setState({ error: 'Incorrect password' });
-      event.preventDefault();
-    }
+    this.props.submitPassword(this.state.selectedUser);
+    event.preventDefault();
   }
 
-  handleChange(event) {
-    this.setState({
-      value: event.target.value,
-      error: null
-    });
+  handleChange(selectedUser) {
+    this.setState({ selectedUser });
+  }
+
+  getGuestOptions(inputValue) {
+    if (inputValue) {
+      this.setState({ isLoading: true });
+
+      return window
+        .fetch('/guests?like=' + inputValue)
+        .then(res => res.json())
+        .then(
+          result => {
+            this.setState({
+              isLoading: false
+            });
+
+            return result.map(guest => {
+              return {
+                value: guest.name,
+                label: guest.name,
+                group: guest.group,
+                type: 'day' // todo
+              };
+            });
+          },
+          error => console.error(error)
+        );
+    }
   }
 
   render() {
     return (
       <div className="login-container">
-        <div>
-          <img src={padlock} />
-          <h1>
-            <FormattedMessage
-              id="Login.welcome"
-              defaultMessage="Enter your password"
-            />
-          </h1>
-          <form onSubmit={this.handleSubmit.bind(this)}>
-            <input type="password" onChange={this.handleChange.bind(this)} />
-            <button type="submit">Submit</button>
-          </form>
-          {this.state.error && <div>{this.state.error}</div>}
-        </div>
+        <h1>
+          <FormattedMessage id="Login.welcome" />
+        </h1>
+        <form onSubmit={this.handleSubmit.bind(this)}>
+          <AsyncSelect
+            className="guest-select"
+            placeholder="Enter you name"
+            cacheOptions
+            isLoading={this.state.isLoading}
+            onChange={this.handleChange.bind(this)}
+            loadOptions={this.getGuestOptions.bind(this)}
+          />
+          <button type="submit">Submit</button>
+        </form>
+        {this.state.error && <div>{this.state.error}</div>}
       </div>
     );
   }
