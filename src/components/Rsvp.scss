@@ -1,8 +1,9 @@
+@import '../vars.scss';
+
 form {
     display: flex;
     flex-direction: column;
-    max-width: 930px;
-    margin: 20px auto;
+    
     .message {
         text-align: center;
         margin-top: 20px;
@@ -10,13 +11,22 @@ form {
     .guest-rows-container {
         display: flex;
         flex-direction: column;
+
+        a {
+            margin-top: 40px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: $text-color;
+        }
     }
+    
     .guest-select {
         text-align: left;
         margin-bottom: 20px;
     }
     .guest-row {
-        margin-bottom: 10px;
+        margin-bottom: 20px;
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -37,8 +47,9 @@ form {
         .name-entry {
             height: 38px;
             padding: 4px 8px;
-            border: 1px solid #cccccc;
-            border-radius: 4px;
+            border: 0;
+            border-bottom: 2px solid #3E5244;
+            border-radius: 0;
             box-sizing: border-box;
             margin-right: 10px;
             width: 230px;

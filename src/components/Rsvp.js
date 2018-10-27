@@ -186,7 +186,7 @@ class RSVP extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit.bind(this)}>
+      <form onSubmit={this.handleSubmit.bind(this)} className="main-content">
         {this.state.isLoading && <div className="message">Loading</div>}
         {this.state.saved && <div className="message">Your changes have been saved</div> }
         {this.state.guestsInGroup.length > 0 && (

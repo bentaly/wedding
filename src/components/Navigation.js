@@ -3,10 +3,6 @@ import './Navigation.css';
 import { NavLink } from 'react-router-dom';
 
 class Navigation extends Component {
-  isActive(ro) {
-    return ro.route === window.location.pathname;
-  }
-
   render() {
     return (
       <div className="navigation">
