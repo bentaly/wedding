@@ -22,8 +22,8 @@
             flex-direction: row;
             justify-content: center;
             align-items: center;
-            line-height: 40px;
-            font-size: 20px;
+            line-height: 36px;
+            font-size: 18px;
             text-transform: uppercase;
             text-decoration: none;
             &:active,
@@ -31,13 +31,11 @@
                 color: white;
             }
             &.active {
-                justify-content: space-around;
-                svg line {
-                    display: initial;
+                span {
+                    border-bottom: 1px solid white;
+                    padding-top: 5px;
+                    line-height: 26px;
                 }
-            }
-            svg line {
-                display: none;
             }
         }
     }

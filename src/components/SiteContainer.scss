@@ -1,21 +1,25 @@
 .app {
     text-align: center;
-    background-image: url('../imgs/floral_head.png');
-    background-position: center top, center top;
-    background-repeat: no-repeat, no-repeat;
+    flex-grow: 1;
     .app-header {
-        min-height: 300px;
+        min-height: 240px;
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
+        position: relative;
+        
+        img {
+            position: absolute;
+            width: 100%;
+            pointer-events: none;
+            top: 0;
+        }
         .app-title {
-            font-size: 1.5em;
+            font-size: 36px;
             display: flex;
-            flex-direction: column;
-            font-weight: 500;
-            &>span:nth-of-type(2) {
-                font-family: cursive;
-            }
+            flex-direction: row;
+            justify-content: center;
+            font-weight: 600;
         }
     }
 }

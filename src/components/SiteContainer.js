@@ -9,6 +9,7 @@ import Info from './Info';
 import GiftRegistry from './GiftRegistry';
 import LoginScreen from './Login';
 import Admin from './Admin';
+import header from '../../public/images/header.png';
 
 class SiteContainer extends Component {
   constructor() {
@@ -72,12 +73,11 @@ class SiteContainer extends Component {
         <BrowserRouter>
           <div className="app">
             <header className="app-header">
+              <img src={header} />
               <h1 className="app-title">
-                <span>Camila</span>
-                <span>and</span>
-                <span>Benjamin</span>
+                Camila &amp; Benjamin
               </h1>
-              <Navigation routes={this.routes} />
+              <Navigation routes={this.routes.filter(route => route.route !== '/admin')} />
             </header>
             <RoutingComponent routes={this.routes} />
           </div>
