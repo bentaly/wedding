@@ -1,28 +1,71 @@
-.places-to-stay {
-    padding: 40px 20px;
+@import '../vars.scss';
 
-    h2, h3 {
-        text-transform: uppercase;
+.info {
+    
+    a {
+        color: inherit;
+    }
+    
+    h2, h3, h4 {
+        font-weight: 600;
     }
 
+    .info-container {
+        border-bottom: 2px solid $text-color;
+        text-align: left;
+
+        & > div:not(.info-heading) {
+            margin-bottom: 10px;
+
+            &:last-of-type {
+                margin-bottom: 20px;
+            }
+        }
+
+        .info-heading {
+            cursor: pointer;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            user-select: none;
+            
+            span {
+                margin-right: 10px;
+            }
+            
+        }
+    }
+
+    .ceremony-details {
+        display: flex;
+        flex-direction: column;
+    }
+    
     .places-container {
-        max-width: 900px;
-        margin: 0 auto;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        
         &>div {
+            margin-bottom: 10px;
             width: 33%;
             display: flex;
             flex-direction: row;
             justify-content: center;
             
             .hotel-content {
-                width: 300px;
+                width: 250px;
                 display: flex;
                 flex-direction: column;
                 justify-content: flex-start;
                 text-align: left;
+                
+                h4 {
+                    margin: 10px 0;
+                    text-transform: uppercase;
+                    font-weight: 600;
+                    font-size: 18px;
+                }
 
                 & > div {
                     display: flex;
