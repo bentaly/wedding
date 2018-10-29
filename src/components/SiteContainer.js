@@ -54,7 +54,7 @@ class SiteContainer extends Component {
     });
 
     if (guest) {
-      window.localStorage.setItem('cambenweddingguest', JSON.stringify(guest));
+      // window.localStorage.setItem('cambenweddingguest', JSON.stringify(guest));
     }
   }
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Login.css';
 import { FormattedMessage } from 'react-intl';
 import AsyncSelect from 'react-select/lib/Async';
+import header from '../../public/images/header.png';
 
 class Login extends Component {
   constructor(props) {
@@ -48,6 +49,7 @@ class Login extends Component {
   render() {
     return (
       <div className="login-container">
+        <img src={header} />
         <h1>
           <FormattedMessage id="Login.welcome" />
         </h1>
