@@ -1,8 +1,13 @@
 {
-  "main.css": "static/css/main.0d047dd9.css",
-  "main.css.map": "static/css/main.0d047dd9.css.map",
-  "main.js": "static/js/main.ad782625.js",
-  "main.js.map": "static/js/main.ad782625.js.map",
-  "static/media/floral_head.png": "static/media/floral_head.b0ec1512.png",
-  "static/media/locked.svg": "static/media/locked.3a1786b7.svg"
+  "main.css": "static/css/main.519a2be9.css",
+  "main.css.map": "static/css/main.519a2be9.css.map",
+  "main.js": "static/js/main.cde9740e.js",
+  "main.js.map": "static/js/main.cde9740e.js.map",
+  "static/media/SharpSans-Extrabold.otf": "static/media/SharpSans-Extrabold.46b846f8.otf",
+  "static/media/SharpSans-Medium.otf": "static/media/SharpSans-Medium.aec53e35.otf",
+  "static/media/SharpSans-Semibold.otf": "static/media/SharpSans-Semibold.a7e391ee.otf",
+  "static/media/footer.png": "static/media/footer.f02a674b.png",
+  "static/media/header.png": "static/media/header.aa7e4c25.png",
+  "static/media/icon_1.png": "static/media/icon_1.46f7a00c.png",
+  "static/media/icon_2.png": "static/media/icon_2.2d62a09a.png"
 }
