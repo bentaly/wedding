@@ -40,8 +40,13 @@ html {
                 flex-direction: column;
 
                 .main-content {
-                    max-width: 930px;
-                    margin: 50px auto 20px auto;
+                    max-width: $content-width;
+                    margin: 50px 20px 20px 20px;
+                    overflow: hidden;
+
+                    @media screen and (min-width: $bp1) {
+                        margin: 50px auto 20px auto;
+                    }                
                 }
             }
             // react-select

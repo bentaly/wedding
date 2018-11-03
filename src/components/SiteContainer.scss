@@ -1,13 +1,25 @@
+@import '../vars.scss';
 .app {
     text-align: center;
     flex-grow: 1;
     .app-header {
-        min-height: 240px;
+        min-height: 190px;
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
         position: relative;
-        
+        @media screen and (min-width: $bp1) {
+            min-height: 210px;
+            .app-title {
+                margin: 20px;
+            }
+        }
+        @media screen and (min-width: $bp2) {
+            min-height: 240px;
+            .app-title {
+                margin: 20px;
+            }
+        }
         img {
             position: absolute;
             width: 100%;
@@ -15,6 +27,7 @@
             top: 0;
         }
         .app-title {
+            margin: 10px;
             font-size: 36px;
             display: flex;
             flex-direction: row;

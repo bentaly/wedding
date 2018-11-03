@@ -1,76 +1,84 @@
 @import '../vars.scss';
-
 .info {
-    
     a {
         color: inherit;
     }
-    
-    h2, h3, h4 {
+    h2,
+    h3,
+    h4 {
         font-weight: 600;
+    }
+    .label-with-icon  {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        a {
+            margin-left: 10px;
+        }
     }
 
     .info-container {
         border-bottom: 2px solid $text-color;
         text-align: left;
-
-        & > div:not(.info-heading) {
+        &>div:not(.info-heading) {
             margin-bottom: 10px;
-
             &:last-of-type {
                 margin-bottom: 20px;
             }
         }
-
         .info-heading {
             cursor: pointer;
             display: flex;
             flex-direction: row;
             align-items: center;
             user-select: none;
-            
             span {
                 margin-right: 10px;
             }
         }
+        .info-content {
+            padding: 0 20px;
+        }
     }
-
     .ceremony-details {
         display: flex;
         flex-direction: column;
     }
-
-    .places-container {
+    .items-container {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        
         &>div {
-            margin-bottom: 10px;
-            width: 33%;
+            width: 100%;
+            justify-content: start;
+            margin-bottom: 30px;
             display: flex;
             flex-direction: row;
-            justify-content: center;
+
+            @media screen and (min-width: $bp0) {
+                justify-content: center;
+                width: 50%;
+            }        
+            @media screen and (min-width: $bp1) {
+                width: 33%;
+            }            
             
-            .hotel-content {
+            .item-content {
                 width: 250px;
                 display: flex;
                 flex-direction: column;
                 justify-content: flex-start;
                 text-align: left;
-                
                 h4 {
                     margin: 10px 0;
                     text-transform: uppercase;
                     font-weight: 600;
                     font-size: 18px;
                 }
-
-                & > div {
+                &>div {
                     display: flex;
                     flex-direction: row;
-                    align-items: center; 
-                    
+                    align-items: center;
                     span {
                         margin-right: 10px;
                     }

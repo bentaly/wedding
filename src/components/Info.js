@@ -17,12 +17,17 @@ class Info extends Component {
         {
           label: 'Accomodation',
           open: false,
-          content: this.accomodation.bind(this)
+          content: () => this.itemLister(this.placesToStay)
         },
         { label: 'Travel', open: false, content: this.travel.bind(this) },
-        { label: 'Taxis', open: false, content: this.taxis.bind(this) }
+        {
+          label: 'Taxis',
+          open: false,
+          content: this.taxis.bind(this)
+        }
       ]
     };
+
     this.placesToStay = [
       {
         title: 'Hotels',
@@ -164,13 +169,91 @@ class Info extends Component {
         ]
       }
     ];
+
+    this.taxis = [
+      {
+        list: [
+          {
+            label: 'AAR Services',
+            phone: '01285 658189'
+          },
+          {
+            label: 'Aristo Cabs',
+            phone: '01285 640926'
+          },
+          {
+            label: 'A 2 B Taxis',
+            phone: '01285 655651',
+            website: 'a2btaxisofcirencester.com'
+          },
+          {
+            label: "Al's Cabs",
+            phone: '01285 651895'
+          },
+          {
+            label: 'Bibury Taxi Company',
+            phone: '01285 740070',
+            website: 'biburytaxicompany.co.uk'
+          },
+          {
+            label: 'Cirencester Taxi',
+            phone: '01285 642767'
+          },
+          {
+            label: 'Ciren Radio Cars',
+            phone: '01285 650850'
+          },
+          {
+            label: 'Hills South Cerney Cabs',
+            phone: '01285 860181',
+            website: 'southcerneycabs.co.uk'
+          },
+          {
+            label: 'Home James',
+            phone: '01285 641339',
+            website: 'homejamestaxi.co.uk'
+          },
+          {
+            label: 'Ian Gaskins Taxi',
+            phone: '07469 216305'
+          },
+          {
+            label: "Pete's Taxis",
+            phone: '07896 972908'
+          },
+          {
+            label: 'Phoenix Cabs',
+            phone: '07519 126121',
+            website: 'phoenixcabsofcirencester.co.uk'
+          },
+          {
+            label: 'Reliance Taxis',
+            phone: '07787 790644',
+            website: 'reliancetaxiscirencester.co.uk'
+          },
+          {
+            label: 'Terry Bateman',
+            phone: '01285 642767'
+          },
+          {
+            label: '2 & Fro',
+            phone: '01285 641973'
+          },
+          {
+            label: 'Where 2',
+            phone: '01285 656148',
+            website: 'cirencestertaxi.com'
+          }
+        ]
+      }
+    ];
   }
 
   dressCode() {
     return (
       <div className="info-content">
         <p>
-          Semi-formal &dash; You don&apos;t need to come all fancy, just make
+          Semi-formal &ndash; You don&apos;t need to come all fancy, just make
           sure you&apos;ve got your dancing shoes on!
         </p>
         <p>
@@ -188,8 +271,7 @@ class Info extends Component {
           <a href="https://goo.gl/maps/tbd7Z4wmJzF2" target="_blank">
             St. Mary&apos;s Church
           </a>
-          <span>Fairford GL7 4AF</span>
-          <a href="#">{svgIcon()}</a>
+          <span className="label-with-icon"><span>Fairford GL7 4AF</span> <a href="#">{svgIcon()}</a></span>
         </p>
 
         <p>
@@ -210,33 +292,66 @@ class Info extends Component {
   }
 
   reception() {
-    return <div className="info-content" />;
-  }
-
-  accomodation() {
     return (
       <div className="info-content">
-        {this.placesToStay.map(places => (
-          <div key={places.title}>
-            <h3>{places.title}</h3>
-            <div className="places-container">
-              {places.list.map(place => (
-                <Hotel key={place.map} data={place} />
+        <div className="label-with-icon">
+          <span>Cripps Barn</span> <a href="https://goo.gl/maps/tQYiJWVxPps">{svgIcon()}</a>
+        </div>
+        <div>Fosscross Ln,</div>
+        <div>Bibury GL7 5BA</div>
+
+        <div>Time: 2:30pm</div>
+        <a href="#">Carriages at 1am</a>
+
+        <p>Make sure you book your taxi in advance. </p>
+        <a href="#">Travel information</a>
+      </div>
+    );
+  }
+
+  itemLister(listOflists) {
+    return (
+      <div className="info-content">
+        {listOflists.map((items, index) => (
+          <div key={items.title || index}>
+            {items.title && <h3>{items.title}</h3>}
+            <div className="items-container">
+              {items.list.map(item => (
+                <Item key={item.label} data={item} />
               ))}
             </div>
           </div>
         ))}
-        ;
       </div>
     );
   }
 
   travel() {
-    return <div className="info-content" />;
+    return (
+      <div className="info-content">
+        <p>
+          If you&apos;re planning to stay for the weekend, there are lovely
+          places around to visit.
+        </p>
+        <p>
+          <a href="https://livingnomads.com/2016/07/bibury-travel-guide">
+            Bibury
+          </a>
+          , considered the most beautiful village in Britain, is nearby and
+          definitely a place you won&apos;t want to miss.
+        </p>
+      </div>
+    );
   }
 
   taxis() {
-    return <div className="info-content" />;
+    return (
+      <div className="info-content">
+        You won’t need a taxi to take you from the church to the reception
+        venue. We’ll be giving everyone a lift!
+        {this.itemLister(this.taxis)}
+      </div>
+    );
   }
 
   toggleMenu(menuItem) {
@@ -295,18 +410,24 @@ const svgIcon = () => {
   );
 };
 
-class Hotel extends Component {
+class Item extends Component {
   render() {
     return (
       <div>
-        <div className="hotel-content">
+        <div className="item-content">
           <h4>{this.props.data.label}</h4>
-          <div>
-            <span>{this.props.data.area}</span>
-            {svgIcon()}
-          </div>
+          {this.props.data.area && (
+            <div>
+              <span>{this.props.data.area}</span>
+              {svgIcon()}
+            </div>
+          )}
           <a href={'tel:' + this.props.data.phone}>{this.props.data.phone}</a>
-          <a href={this.props.data.website}>{this.props.data.websiteLabel}</a>
+          {this.props.data.website && (
+            <a href={this.props.data.website}>
+              {this.props.data.websiteLabel || this.props.data.website}
+            </a>
+          )}
         </div>
       </div>
     );
