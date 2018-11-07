@@ -3,6 +3,7 @@ import './Home.css';
 import { NavLink } from 'react-router-dom';
 import icon1 from '../../public/images/icon_1.png';
 import icon2 from '../../public/images/icon_2.png';
+import { FormattedMessage } from 'react-intl';
 
 class Home extends Component {
   render() {
@@ -59,7 +60,7 @@ class ThePlan extends Component {
   render() {
     return (
       <div className="plan">
-        <h3>The Plan</h3>
+        <h3><FormattedMessage id="Home.thePlan" /></h3>
         {this.planArr.map((planItem, index) => (
           <div key={planItem.time}>
             {index ? <img src={index % 2 === 0 ? icon1 : icon2} /> : ''}

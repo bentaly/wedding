@@ -1,8 +1,10 @@
 {
   "en": {
-    "Login.welcome": "Enter your password"
+    "Home.thePlan": "The Plan",
+    "Login.welcome": "Who are you?"
   },
   "pt": {
-    "Login.welcome": "Coloque sua senha"
+    "Login.welcome": "Coloque sua senha",
+    "Home.thePlan": "O Plano"
   }
 }
