@@ -31,7 +31,7 @@ form {
         flex-direction: column;
         align-items: flex-start;
         
-        @media screen and (min-width: $bp1) {
+        @media screen and (min-width: $bp0) {
             align-items: center;
             flex-direction: row;
         }        
