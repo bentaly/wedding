@@ -110,7 +110,8 @@ html {
             }
             &:active {
                 border-style: none;
-                background-color: grey;
+                background-color: #3E5244;
+                color: white;
             }
             &:hover,
             &:active {
@@ -124,7 +125,7 @@ html {
                 }
             }
             &.active {
-                background-color: #3f5647;
+                background-color: #3E5244;
                 color: white;
             }
         }

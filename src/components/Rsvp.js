@@ -62,14 +62,13 @@ class RSVP extends Component {
   transformToBE(guestsInGroup) {
     const data = JSON.parse(JSON.stringify(guestsInGroup));
 
-    data.filter(guest => guest.name)
-      .map(guest => {
-        guest.plusOne = guest.new;
-        delete guest.new;
-        guest.rsvp = guest.rsvp.value;
-        guest.diet = guest.diet.map(d => d.value);
-        return guest;
-      });
+    data.filter(guest => guest.name).map(guest => {
+      guest.plusOne = guest.new;
+      delete guest.new;
+      guest.rsvp = guest.rsvp.value;
+      guest.diet = guest.diet.map(d => d.value);
+      return guest;
+    });
 
     return data;
   }
@@ -184,11 +183,52 @@ class RSVP extends Component {
     this.setState({ numberOfCoachSpaces: e.target.value });
   }
 
+  someoneIsComing() {
+    return this.state.guestsInGroup.find(guest => guest.rsvp.value);
+  }
+
   render() {
+    if (this.state.submitted) {
+      return (
+        <div className="submitted">
+          <h3>
+            {this.someoneIsComing()
+              ? "We can't wait!"
+              : 'We\'re sorry we wont see you'}
+          </h3>
+
+          {this.someoneIsComing() ? (
+            <div>
+              <p>
+                Thank you for joining us on our big day, we can’t wait to share
+                it with you!
+              </p>
+              <p>
+                Make sure you book your <a href="/info">hotel and taxi</a> as
+                early as possible, if you’ll need one.
+              </p>
+              <p>
+                You can <a href="/rsvp">go back and edit</a> the responses at any time
+                up until March 19th.
+              </p>
+            </div>
+          ) : (
+            <p>
+              Thanks for letting us know, hopefully we’ll catch you for a drink
+              soon.
+            </p>
+          )}
+
+          <p>Camila &amp; Ben x</p>
+        </div>
+      );
+    }
     return (
       <form onSubmit={this.handleSubmit.bind(this)} className="main-content">
         {this.state.isLoading && <div className="message">Loading</div>}
-        {this.state.saved && <div className="message">Your changes have been saved</div> }
+        {this.state.saved && (
+          <div className="message">Your changes have been saved</div>
+        )}
         {this.state.guestsInGroup.length > 0 && (
           <div className="guest-rows-container">
             {this.state.guestsInGroup.map(guest => this.guestRow(guest))}

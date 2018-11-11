@@ -1,5 +1,15 @@
 @import '../vars.scss';
 
+.submitted {
+    padding-top: 50px;
+
+    h3 {
+        font-weight: 600;
+    }
+    button {
+        margin-top: 30px;
+    }
+}
 form {
     display: flex;
     flex-direction: column;
@@ -26,7 +36,7 @@ form {
         margin-bottom: 20px;
     }
     .guest-row {
-        margin-bottom: 20px;
+        margin-bottom: 40px;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -34,13 +44,20 @@ form {
         @media screen and (min-width: $bp0) {
             align-items: center;
             flex-direction: row;
+            margin-bottom: 20px;
         }        
 
         &>* {
             text-align: left;
         }
         label {
+            font-weight: 600;
             width: 240px;
+            margin-bottom: 10px;
+
+            @media screen and (min-width: $bp0) {
+                margin-bottom: initial;
+            }     
         }
         .name-entry,
         .rsvp-value,
@@ -50,6 +67,11 @@ form {
         }
         .rsvp-value {
             margin-right: 10px;
+            margin-bottom: 10px;                
+
+            @media screen and (min-width: $bp0) {
+                margin-bottom: 0;                
+            }
         }
         .name-entry {
             height: 38px;
