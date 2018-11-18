@@ -59,7 +59,7 @@
     "build-js": "node scripts/build.js",
     "build:langs": "NODE_ENV='production' babel-node scripts/mergeMessages.js",
     "build:old": "npm run build:langs build-css &&  node scripts/build.js",
-    "build": "npm run build-css &&  node scripts/build.js",
+    "build": "npm run build-css && node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom"
   },
   "proxy": "http://localhost:8080",

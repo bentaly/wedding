@@ -1,13 +1,14 @@
 {
-  "main.css": "static/css/main.66fdc305.css",
-  "main.css.map": "static/css/main.66fdc305.css.map",
-  "main.js": "static/js/main.1dd14a78.js",
-  "main.js.map": "static/js/main.1dd14a78.js.map",
+  "main.css": "static/css/main.fd486a20.css",
+  "main.css.map": "static/css/main.fd486a20.css.map",
+  "main.js": "static/js/main.c86d2d9e.js",
+  "main.js.map": "static/js/main.c86d2d9e.js.map",
   "static/media/SharpSans-Extrabold.otf": "static/media/SharpSans-Extrabold.46b846f8.otf",
   "static/media/SharpSans-Medium.otf": "static/media/SharpSans-Medium.aec53e35.otf",
   "static/media/SharpSans-Semibold.otf": "static/media/SharpSans-Semibold.a7e391ee.otf",
+  "static/media/bg.jpg": "static/media/bg.ed08d8af.jpg",
   "static/media/footer.png": "static/media/footer.f02a674b.png",
   "static/media/header.png": "static/media/header.aa7e4c25.png",
-  "static/media/icon_1.png": "static/media/icon_1.46f7a00c.png",
-  "static/media/icon_2.png": "static/media/icon_2.2d62a09a.png"
+  "static/media/icon_1.png": "static/media/icon_1.7d3287da.png",
+  "static/media/icon_2.png": "static/media/icon_2.1ba82534.png"
 }

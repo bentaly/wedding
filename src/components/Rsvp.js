@@ -10,6 +10,7 @@ class RSVP extends Component {
       numberOfCoachSpaces: 0,
       isLoading: true
     };
+    this.dontBindCoachSpace = false;
     this.rvspOptions = [
       { value: true, label: "I'll be there" },
       { value: false, label: "Can't come" }
@@ -35,7 +36,7 @@ class RSVP extends Component {
         this.transformToFE(guestsInGroup);
 
         this.setState({
-          numberOfCoachSpaces: guestsInGroup.length,
+          numberOfCoachSpaces: this.getGuestNumbersComing(guestsInGroup),
           guestsInGroup: guestsInGroup,
           isLoading: false
         });
@@ -67,6 +68,7 @@ class RSVP extends Component {
       delete guest.new;
       guest.rsvp = guest.rsvp.value;
       guest.diet = guest.diet.map(d => d.value);
+      guest.numberOfCoachSpacesForGroup = this.state.numberOfCoachSpaces;
       return guest;
     });
 
@@ -106,13 +108,17 @@ class RSVP extends Component {
       })
     };
 
-    if (attr === 'rsvp') {
-      updatedState.numberOfCoachSpaces = this.state.guestsInGroup.filter(
-        guestInGroup => guestInGroup.rsvp
-      ).length;
+    if (attr === 'rsvp' && !this.dontBindCoachSpace) {
+      updatedState.numberOfCoachSpaces = this.getGuestNumbersComing(this.state.guestsInGroup);
     }
 
     this.setState(updatedState);
+  }
+
+  getGuestNumbersComing(guestsInGroup) {
+    return guestsInGroup.filter(
+      guestInGroup => guestInGroup.rsvp && guestInGroup.rsvp.value
+    ).length;
   }
 
   addGuest() {
@@ -180,11 +186,17 @@ class RSVP extends Component {
   }
 
   coachNumberChange(e) {
+    this.dontBindCoachSpace = true;
     this.setState({ numberOfCoachSpaces: e.target.value });
   }
 
   someoneIsComing() {
     return this.state.guestsInGroup.find(guest => guest.rsvp.value);
+  }
+
+  areDayGuest() {
+    const guest = window.localStorage.getItem('cambenweddingguest');
+    return !JSON.parse(guest).evening;
   }
 
   render() {
@@ -223,6 +235,7 @@ class RSVP extends Component {
         </div>
       );
     }
+
     return (
       <form onSubmit={this.handleSubmit.bind(this)} className="main-content">
         {this.state.isLoading && <div className="message">Loading</div>}
@@ -235,7 +248,7 @@ class RSVP extends Component {
             <a href="#" onClick={this.addGuest.bind(this)}>
               + Add another guest
             </a>
-            <div>
+            {this.areDayGuest() && <div>
               We will need{' '}
               <input
                 type="number"
@@ -243,7 +256,7 @@ class RSVP extends Component {
                 value={this.state.numberOfCoachSpaces}
               />{' '}
               spaces in the coach going from the church to Cripps
-            </div>
+            </div>}
             <button type="submit">Save</button>
           </div>
         )}

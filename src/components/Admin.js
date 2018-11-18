@@ -43,6 +43,7 @@ class Admin extends Component {
             <th>Group</th>
             <th>Coming</th>
             <th>Meal</th>
+            <th># of coach spaces (group)</th>
           </tr>
         </thead>
         <tbody>
@@ -52,6 +53,7 @@ class Admin extends Component {
               <td>{guest.group}</td>
               <td>{this.getRsvp(guest)}</td>
               <td>{(guest.diet && guest.diet.join(', ')) || ''}</td>
+              <td>{guest.numberOfCoachSpacesForGroup}</td>
             </tr>
           ))}
         </tbody>

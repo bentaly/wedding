@@ -8,29 +8,29 @@
     }
     
     h3 {
-        border-bottom: 2px solid $text-color;;
+        border-bottom: 3px solid $text-color;;
         padding-top: 5px;
-        line-height: 26px;
+        line-height: 48px;
         display: inline-block;
         padding: 10px 30px;
         font-weight: 600;
-        font-size: 26px;
+        font-size: 48px;
         margin-bottom: 50px;
+        margin-top: 0;
     }
     
     .rsvp-button {
-        margin-top: 20px;
+        margin-top: 50px;
         display: inline-block;
         
         & > button {
-            // font-weight: 600;
-            font-size: 30px;
+            font-size: 24px;
         }
     }
     
     .plan {
         img {
-            width: 60px;
+            width: 42px;
         }
         a {
             color: inherit;
@@ -47,7 +47,7 @@
                 
                 &.time {
                     text-align: right;
-                    font-size: 40px;
+                    font-size: 48px;
                     font-weight: 700;
                 }
                 

@@ -1,10 +1,22 @@
 {
   "en": {
+    "common.submit": "submit",
+    "common.rsvp": "RSVP",
     "Home.thePlan": "The Plan",
-    "Login.welcome": "Who are you?"
+    "Login.welcome": "Who are you?",
+    "Home.plan-0":
+    "Guests arrive at <a href='https://goo.gl/maps/tbd7Z4wmJzF2' target='_blank'>St. Mary's Church</a>",
+    "Home.plan-1": "Here comes the bride!",
+    "Home.plan-2": "Drinks and Canapes at Cripps Barn",
+    "Home.plan-3": "Lunch is served",
+    "Home.plan-4": "Evening guests arrive at <a href='https://goo.gl/maps/3usJWQFTnQz' target='_blank'>Cripps Barn</a>",
+    "Home.plan-5": "We'll get the party started after our first dance",
+    "Home.plan-6": "Late night bites",
+    "Home.plan-7": "<a href='/info?open=taxis'>Carriages</a>"
   },
   "pt": {
-    "Login.welcome": "Coloque sua senha",
-    "Home.thePlan": "O Plano"
+    "common.submit": "submitola",
+    "Home.thePlan": "O Plano",
+    "Login.welcome": "Coloque sua senha"
   }
 }

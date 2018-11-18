@@ -5,27 +5,51 @@ class Info extends Component {
   constructor(props) {
     super(props);
 
+    let menu = [
+      {
+        key: 'dresscode',
+        label: 'Dress code',
+        open: false,
+        content: this.dressCode.bind(this)
+      },
+      {
+        key: 'ceremony',
+        label: 'Ceremony',
+        open: false,
+        content: this.ceremony.bind(this)
+      },
+      {
+        key: 'reception',
+        label: 'Reception',
+        open: false,
+        content: this.reception.bind(this)
+      },
+      {
+        key: 'accomodation',
+        label: 'Accomodation',
+        open: false,
+        content: () => this.itemLister(this.placesToStay)
+      },
+      {
+        key: 'travel',
+        label: 'Travel',
+        open: false,
+        content: this.travel.bind(this)
+      },
+      {
+        key: 'taxis',
+        label: 'Taxis',
+        open: false,
+        content: this.taxis.bind(this)
+      }
+    ];
+
+    if (!this.areDayGuest()) {
+      menu = menu.filter(menuItem => menuItem.key !== 'ceremony');
+    }
+
     this.state = {
-      menu: [
-        {
-          label: 'Dress code',
-          open: false,
-          content: this.dressCode.bind(this)
-        },
-        { label: 'Ceremony', open: false, content: this.ceremony.bind(this) },
-        { label: 'Reception', open: false, content: this.reception.bind(this) },
-        {
-          label: 'Accomodation',
-          open: false,
-          content: () => this.itemLister(this.placesToStay)
-        },
-        { label: 'Travel', open: false, content: this.travel.bind(this) },
-        {
-          label: 'Taxis',
-          open: false,
-          content: this.taxis.bind(this)
-        }
-      ]
+      menu
     };
 
     this.placesToStay = [
@@ -49,7 +73,7 @@ class Info extends Component {
             map: 'https://goo.gl/maps/md3sK32yPmA2'
           },
           {
-            label: 'De Vere Cotswolds Water Park',
+            label: 'De Vere Cotswolds',
             area: 'Cirencester',
             phone: '+44 (0) 1285 864 000',
             website:
@@ -103,7 +127,7 @@ class Info extends Component {
         ]
       },
       {
-        title: 'Pubs with Rooms',
+        title: 'Pubs with rooms',
         list: [
           {
             label: 'The New Inn',
@@ -249,6 +273,27 @@ class Info extends Component {
     ];
   }
 
+  componentDidMount() {
+    const url = new URL(window.location.href);
+    const open = url.searchParams.get('open');
+
+    if (open) {
+      this.setState({
+        menu: this.state.menu.map(item => {
+          if (item.key === open) {
+            item.open = true;
+          }
+          return item;
+        })
+      });
+    }
+  }
+
+  areDayGuest() {
+    const guest = window.localStorage.getItem('cambenweddingguest');
+    return !JSON.parse(guest).evening;
+  }
+
   dressCode() {
     return (
       <div className="info-content">
@@ -271,18 +316,23 @@ class Info extends Component {
           <a href="https://goo.gl/maps/tbd7Z4wmJzF2" target="_blank">
             St. Mary&apos;s Church
           </a>
-          <span className="label-with-icon"><span>Fairford GL7 4AF</span> <a href="#">{svgIcon()}</a></span>
+          <span className="label-with-icon">
+            <span>Fairford, GL7 4AF</span> <a href="#">{svgIcon()}</a>
+          </span>
         </p>
 
         <p>
-          Time: 1pm Kindly arrive by 12:50pm so there is enough time to say
-          hello and be seated before the ceremony starts.
+          Time: 1pm <br />
+          Kindly arrive by 12:50pm so there is enough time to say hello and be
+          seated before the ceremony starts.
         </p>
 
         <p>
           We will be having an unplugged ceremony, so please resist the
           temptation of taking photos and videos. We know it&apos;s hard to stay
           away from your phone, but we promise it will only be for an hour!
+        </p>
+        <p>
           We&apos;ll be providing transport between St. Mary&apos;s and Cripps
           Barn once the ceremony ends, just let us know if you need a seat when
           you <a href="/rsvp">RSVP</a>.
@@ -295,16 +345,18 @@ class Info extends Component {
     return (
       <div className="info-content">
         <div className="label-with-icon">
-          <span>Cripps Barn</span> <a href="https://goo.gl/maps/tQYiJWVxPps">{svgIcon()}</a>
+          <span>Cripps Barn</span>{' '}
+          <a href="https://goo.gl/maps/tQYiJWVxPps">{svgIcon()}</a>
         </div>
         <div>Fosscross Ln,</div>
-        <div>Bibury GL7 5BA</div>
+        <div>Bibury, GL7 5BA</div>
 
-        <div>Time: 2:30pm</div>
-        <a href="#">Carriages at 1am</a>
-
-        <p>Make sure you book your taxi in advance. </p>
-        <a href="#">Travel information</a>
+        <p>Time: 2:30pm</p>
+        <p>
+          Carriages at 1am.
+          <br />
+          Make sure you book your <a href="#">taxi</a> in advance.{' '}
+        </p>
       </div>
     );
   }
@@ -347,8 +399,8 @@ class Info extends Component {
   taxis() {
     return (
       <div className="info-content">
-        You won’t need a taxi to take you from the church to the reception
-        venue. We’ll be giving everyone a lift!
+        {this.areDayGuest() &&
+          'You won\'t need a taxi to take you from the church to the reception venue. We\'ll be giving everyone a lift!'}
         {this.itemLister(this.taxis)}
       </div>
     );

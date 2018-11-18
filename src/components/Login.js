@@ -36,8 +36,7 @@ class Login extends Component {
               return {
                 value: guest.name,
                 label: guest.name,
-                group: guest.group,
-                type: 'day' // todo
+                group: guest.group
               };
             });
           },
@@ -56,14 +55,15 @@ class Login extends Component {
         <form onSubmit={this.handleSubmit.bind(this)}>
           <AsyncSelect
             className="guest-select"
-            placeholder="Enter you name"
+            placeholder="Enter your name"
             cacheOptions
             isLoading={this.state.isLoading}
             onChange={this.handleChange.bind(this)}
             loadOptions={this.getGuestOptions.bind(this)}
           />
-          <button type="submit">Submit</button>
+          <button type="submit"><FormattedMessage id="common.submit" /></button>
         </form>
+        {/* todo handle */}
         {this.state.error && <div>{this.state.error}</div>}
       </div>
     );
