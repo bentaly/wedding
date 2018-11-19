@@ -72,7 +72,7 @@ const getUserWithoutId = user => {
   delete user._id;
   return user;
 };
-app.get('/', function(req, res) {
+app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
