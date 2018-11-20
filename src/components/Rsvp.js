@@ -157,7 +157,7 @@ class RSVP extends Component {
           />
         )}
         <Select
-          placeholder="You coming?"
+          placeholder="Are you coming?"
           className="rsvp-value"
           defaultValue={guest.rsvp}
           isClearable={false}
@@ -169,7 +169,7 @@ class RSVP extends Component {
         {guest.rsvp &&
           guest.rsvp.value && (
           <Select
-            placeholder="What food (multiple allowed)"
+            placeholder="Dietary requirements"
             isClearable={false}
             className="diet-value"
             isSearchable={false}
@@ -199,6 +199,11 @@ class RSVP extends Component {
     return !JSON.parse(guest).evening;
   }
 
+  canAddGuest() {
+    const guest = window.localStorage.getItem('cambenweddingguest');
+    return JSON.parse(guest).guest;
+  }
+
   render() {
     if (this.state.submitted) {
       return (
@@ -206,7 +211,7 @@ class RSVP extends Component {
           <h3>
             {this.someoneIsComing()
               ? "We can't wait!"
-              : 'We\'re sorry we wont see you'}
+              : 'We\'re sorry we won\'t see you'}
           </h3>
 
           {this.someoneIsComing() ? (
@@ -216,7 +221,7 @@ class RSVP extends Component {
                 it with you!
               </p>
               <p>
-                Make sure you book your <a href="/info">hotel and taxi</a> as
+                We recommend you book your <a href="/info?open=accomodation">hotel</a> and <a href="/info?open=taxis">taxi</a> as
                 early as possible, if you’ll need one.
               </p>
               <p>
@@ -245,17 +250,17 @@ class RSVP extends Component {
         {this.state.guestsInGroup.length > 0 && (
           <div className="guest-rows-container">
             {this.state.guestsInGroup.map(guest => this.guestRow(guest))}
-            <a href="#" onClick={this.addGuest.bind(this)}>
+            {this.canAddGuest() && <a href="#" onClick={this.addGuest.bind(this)}>
               + Add another guest
-            </a>
-            {this.areDayGuest() && <div>
+            </a>}
+            {this.areDayGuest() && <div className="coach-numbers-container">
               We will need{' '}
               <input
                 type="number"
                 onChange={this.coachNumberChange.bind(this)}
                 value={this.state.numberOfCoachSpaces}
               />{' '}
-              spaces in the coach going from the church to Cripps
+              spaces in the coach going from the church to the reception at Cripps Barn.
             </div>}
             <button type="submit">Save</button>
           </div>

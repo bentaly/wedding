@@ -21,13 +21,18 @@ form {
     .guest-rows-container {
         display: flex;
         flex-direction: column;
+        padding: 0 2px;
 
         a {
-            margin-top: 40px;
+            margin-top: 20px;
             margin-bottom: 20px;
             text-transform: uppercase;
             text-decoration: none;
             color: $text-color;
+        }
+
+        .coach-numbers-container {
+            margin: 20px 0;
         }
     }
     
@@ -88,6 +93,7 @@ form {
     }
     button[type='submit'] {
         align-self: flex-end;
+        margin: 20px 5px 100px 5px;
     }
     a {
         align-self: flex-start;

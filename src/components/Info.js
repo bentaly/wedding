@@ -382,11 +382,15 @@ class Info extends Component {
     return (
       <div className="info-content">
         <p>
-          If you&apos;re planning to stay for the weekend, there are lovely
-          places around to visit.
+          The best way to get there is by car.
         </p>
         <p>
-          <a href="https://livingnomads.com/2016/07/bibury-travel-guide">
+          If you're taking the train, the nearest train station is <a href="https://www.google.co.uk/maps/place/Kemble+Station/@51.6769305,-2.02504,17z/data=!3m1!4b1!4m5!3m4!1s0x487114a7fbe02e87:0xcf94d40bdf649303!8m2!3d51.6769272!4d-2.0228513" target="_blank">Kemble</a>. From there, the easiest way
+          to get around would be by taxi - public transport around the Cotswolds
+          is a little bit tricky, although still possible.</p>
+        <p>
+          If you&apos;re planning to stay for the weekend, there are lovely
+          places around to visit. <a href="https://livingnomads.com/2016/07/bibury-travel-guide">
             Bibury
           </a>
           , considered the most beautiful village in Britain, is nearby and
@@ -399,8 +403,9 @@ class Info extends Component {
   taxis() {
     return (
       <div className="info-content">
+        <p>Make sure you book your taxi as early as possible. Getting a taxi on the day is likely to be very difficult.</p>
         {this.areDayGuest() &&
-          'You won\'t need a taxi to take you from the church to the reception venue. We\'ll be giving everyone a lift!'}
+        'You won\'t need a taxi to take you from the church to the reception at Cripps Barn, we\'ll be giving everyone a lift!'}
         {this.itemLister(this.taxis)}
       </div>
     );

@@ -36,7 +36,9 @@ class Login extends Component {
               return {
                 value: guest.name,
                 label: guest.name,
-                group: guest.group
+                group: guest.group,
+                guest: guest.guest,
+                evening: guest.evening
               };
             });
           },
