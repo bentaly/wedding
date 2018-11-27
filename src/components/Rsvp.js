@@ -17,9 +17,9 @@ class RSVP extends Component {
     ];
     this.dietaryOptions = [
       { label: 'Anything', value: 'Anything' },
-      { label: 'Veggie', value: 'Vegetarian' },
+      { label: 'Vegetarian', value: 'Vegetarian' },
       { label: 'Vegan', value: 'Vegan' },
-      { label: 'Gluten free', value: 'GF' }
+      { label: 'Gluten-free', value: 'GF' }
     ];
   }
 
@@ -66,8 +66,8 @@ class RSVP extends Component {
     data.filter(guest => guest.name).map(guest => {
       guest.plusOne = guest.new;
       delete guest.new;
-      guest.rsvp = guest.rsvp.value;
-      guest.diet = guest.diet.map(d => d.value);
+      guest.rsvp = guest.rsvp && guest.rsvp.value;
+      guest.diet = guest.diet && guest.diet.map(d => d.value);
       guest.numberOfCoachSpacesForGroup = this.state.numberOfCoachSpaces;
       return guest;
     });
@@ -191,7 +191,7 @@ class RSVP extends Component {
   }
 
   someoneIsComing() {
-    return this.state.guestsInGroup.find(guest => guest.rsvp.value);
+    return this.state.guestsInGroup.find(guest => guest.rsvp && guest.rsvp.value);
   }
 
   areDayGuest() {
@@ -230,10 +230,16 @@ class RSVP extends Component {
               </p>
             </div>
           ) : (
-            <p>
-              Thanks for letting us know, hopefully we’ll catch you for a drink
-              soon.
-            </p>
+            <div>
+              <p>
+                Thanks for letting us know, hopefully we’ll catch you for a drink
+                soon.
+              </p>
+              <p>
+                You can <a href="/rsvp">go back and edit</a> the responses at any time
+                up until March 19th.
+              </p>
+            </div>
           )}
 
           <p>Camila &amp; Ben x</p>

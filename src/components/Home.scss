@@ -16,7 +16,6 @@
         font-weight: 600;
         font-size: 48px;
         margin-bottom: 50px;
-        margin-top: 0;
     }
     
     .rsvp-button {
@@ -25,6 +24,16 @@
         
         & > button {
             font-size: 24px;
+        }
+    }
+
+    .welcome {
+        h3 {
+            margin-top: 0;
+        }
+
+        p {
+            font-size: 20px;
         }
     }
     

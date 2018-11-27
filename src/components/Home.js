@@ -11,11 +11,28 @@ class Home extends Component {
       <div className="home-section">
         <img src={bg} />
         <div className="main-content">
+          <div className="welcome">
+            <h3>We're tying the knot!</h3>
+            <p>
+              The day is fast approaching and we can't wait to celebrate it with
+              you. We're looking forward to eating, drinking and boogieing all
+              night with all of our favourite people, so we really hope you can
+              be there!
+            </p>
+            <p>
+              Here you'll find all the information you'll need for the day, but
+              give us a shout if you have any questions.
+            </p>
+            <p>
+              And finally, thank you for being a part of our lives and
+              relationship. We love you all and our special day won't be the
+              same without you, so suit up, bring your favourite dance moves and
+              join us for a day to remember!
+            </p>
+          </div>
           <ThePlan />
           <NavLink className="rsvp-button" to={'/rsvp'}>
-            <button>
-              RSVP
-            </button>
+            <button>RSVP</button>
           </NavLink>
         </div>
       </div>
@@ -36,7 +53,7 @@ class ThePlan extends Component {
       },
       {
         time: '14.30',
-        label: 'Drinks and Canapes at Cripps Barn'
+        label: `Drinks and canapés at <a href='https://goo.gl/maps/3usJWQFTnQz' target='_blank'>Cripps Barn</a>`
       },
       {
         time: '16.00',
@@ -75,18 +92,20 @@ class ThePlan extends Component {
   render() {
     return (
       <div className="plan">
-        <h3>
-          The Plan
-        </h3>
-        {this.state && this.state.planArr.map((planItem, index) => (
-          <div key={planItem.time}>
-            {index ? <img src={index % 2 === 0 ? icon1 : icon2} /> : ''}
-            <div className="plan-item">
-              <span className="time">{planItem.time}</span>
-              <span className="plan" dangerouslySetInnerHTML={{ __html: planItem.label }}/>
+        <h3>The Plan</h3>
+        {this.state &&
+          this.state.planArr.map((planItem, index) => (
+            <div key={planItem.time}>
+              {index ? <img src={index % 2 === 0 ? icon1 : icon2} /> : ''}
+              <div className="plan-item">
+                <span className="time">{planItem.time}</span>
+                <span
+                  className="plan"
+                  dangerouslySetInnerHTML={{ __html: planItem.label }}
+                />
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
     );
   }

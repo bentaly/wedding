@@ -60,7 +60,7 @@ class Info extends Component {
             label: 'Barnsley House',
             area: 'Barnsley',
             phone: '+44 1285 740000',
-            website: 'barnsleyhouse.com',
+            website: 'https://www.barnsleyhouse.com',
             websiteLabel: 'barnsleyhouse.com',
             map: 'https://goo.gl/maps/nirjixk1CQU2'
           },
@@ -68,7 +68,7 @@ class Info extends Component {
             label: 'Kings Head Hotel',
             area: 'Cirencester',
             phone: '+44 1285 700900',
-            website: 'kingshead-hotel.co.uk',
+            website: 'http://www.kingshead-hotel.co.uk',
             websiteLabel: 'kingshead-hotel.co.uk',
             map: 'https://goo.gl/maps/md3sK32yPmA2'
           },
@@ -208,16 +208,12 @@ class Info extends Component {
           {
             label: 'A 2 B Taxis',
             phone: '+44 1285 655651',
-            website: 'a2btaxisofcirencester.com'
+            website: 'http://www.a2btaxisofcirencester.com',
+            websiteLabel: 'a2btaxisofcirencester.com'
           },
           {
             label: "Al's Cabs",
             phone: '+44 1285 651895'
-          },
-          {
-            label: 'Bibury Taxi Company',
-            phone: '+44 1285 740070',
-            website: 'biburytaxicompany.co.uk'
           },
           {
             label: 'Cirencester Taxi',
@@ -230,12 +226,14 @@ class Info extends Component {
           {
             label: 'Hills South Cerney Cabs',
             phone: '+44 1285 860181',
-            website: 'southcerneycabs.co.uk'
+            website: 'https://www.southcerneycabs.co.uk',
+            websiteLabel: 'southcerneycabs.co.uk'
           },
           {
             label: 'Home James',
             phone: '+44 1285 641339',
-            website: 'homejamestaxi.co.uk'
+            website: 'http://www.homejamestaxi.co.uk',
+            websiteLabel: 'homejamestaxi.co.uk'
           },
           {
             label: 'Ian Gaskins Taxi',
@@ -247,13 +245,13 @@ class Info extends Component {
           },
           {
             label: 'Phoenix Cabs',
-            phone: '+44 7519 126121',
-            website: 'phoenixcabsofcirencester.co.uk'
+            phone: '+44 7519 126121'
           },
           {
             label: 'Reliance Taxis',
             phone: '+44 7787 790644',
-            website: 'reliancetaxiscirencester.co.uk'
+            website: 'https://www.reliancetaxiscirencester.co.uk',
+            websiteLabel: 'reliancetaxiscirencester.co.uk'
           },
           {
             label: 'Terry Bateman',
@@ -266,7 +264,8 @@ class Info extends Component {
           {
             label: 'Where 2',
             phone: '+44 1285 656148',
-            website: 'cirencestertaxi.com'
+            website: 'http://www.cirencestertaxi.com',
+            websiteLabel: 'cirencestertaxi.com'
           }
         ]
       }
@@ -350,11 +349,11 @@ class Info extends Component {
   reception() {
     return (
       <div className="info-content">
-        <a href="https://goo.gl/maps/tQYiJWVxPps">Cripps Barn</a>
+        <a href="https://goo.gl/maps/tQYiJWVxPps" target="_blank">Cripps Barn</a>
         <div>Fosscross Ln,</div>
         <div>Bibury, GL7 5BA</div>
 
-        <p>Time: 2:30pm</p>
+        <p>Time: {this.areDayGuest() ? '2:30pm' : '7:00pm' }</p>
         <p>
           Carriages at 1am.
           <br />
@@ -393,7 +392,7 @@ class Info extends Component {
           is a little bit tricky, although still possible.</p>
         <p>
           If you&apos;re planning to stay for the weekend, there are lovely
-          places around to visit. <a href="https://livingnomads.com/2016/07/bibury-travel-guide">
+          places around to visit. <a href="https://livingnomads.com/2016/07/bibury-travel-guide" target="_blank">
             Bibury
           </a>
           , considered the most beautiful village in Britain, is nearby and
@@ -479,12 +478,12 @@ class Item extends Component {
           {this.props.data.area && (
             <div>
               <span>{this.props.data.area}</span>
-              {svgIcon()}
+              <a href={this.props.data.map} target="_blank">{svgIcon()}</a>
             </div>
           )}
           <a href={'tel:' + this.props.data.phone}>{this.props.data.phone}</a>
           {this.props.data.website && (
-            <a href={this.props.data.website}>
+            <a href={this.props.data.website} target="_blank">
               {this.props.data.websiteLabel || this.props.data.website}
             </a>
           )}
