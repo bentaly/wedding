@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './Login.css';
-import { FormattedMessage } from 'react-intl';
 import AsyncSelect from 'react-select/lib/Async';
 import header from '../../public/images/header.png';
 
@@ -52,7 +51,7 @@ class Login extends Component {
       <div className="login-container">
         <img src={header} />
         <h1>
-          <FormattedMessage id="Login.welcome" />
+          Who are you?
         </h1>
         <form onSubmit={this.handleSubmit.bind(this)}>
           <AsyncSelect
@@ -63,7 +62,7 @@ class Login extends Component {
             onChange={this.handleChange.bind(this)}
             loadOptions={this.getGuestOptions.bind(this)}
           />
-          <button type="submit"><FormattedMessage id="common.submit" /></button>
+          <button type="submit">Submit</button>
         </form>
         {/* todo handle */}
         {this.state.error && <div>{this.state.error}</div>}

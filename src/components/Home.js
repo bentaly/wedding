@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 import icon1 from '../../public/images/icon_1.png';
 import icon2 from '../../public/images/icon_2.png';
 import bg from '../../public/images/bg.jpg';
-import { FormattedMessage } from 'react-intl';
 
 class Home extends Component {
   render() {
@@ -15,7 +14,7 @@ class Home extends Component {
           <ThePlan />
           <NavLink className="rsvp-button" to={'/rsvp'}>
             <button>
-              <FormattedMessage id="common.rsvp" />
+              RSVP
             </button>
           </NavLink>
         </div>
@@ -29,38 +28,38 @@ class ThePlan extends Component {
     let planArr = [
       {
         time: '12.30',
-        key: 'plan-0'
+        label: `Guests arrive at <a href='https://goo.gl/maps/tbd7Z4wmJzF2' target='_blank'>St. Mary's Church</a>`
       },
       {
         time: '13.00',
-        key: 'plan-1'
+        label: 'Here comes the bride!'
       },
       {
         time: '14.30',
-        key: 'plan-2'
+        label: 'Drinks and Canapes at Cripps Barn'
       },
       {
         time: '16.00',
-        key: 'plan-3'
+        label: 'Lunch is served'
       },
       {
         time: '19.00',
-        key: 'plan-4',
+        label: `Evening guests arrive at <a href='https://goo.gl/maps/3usJWQFTnQz' target='_blank'>Cripps Barn</a>`,
         evening: true
       },
       {
         time: '19.30',
-        key: 'plan-5',
+        label: `We'll get the party started after our first dance`,
         evening: true
       },
       {
         time: '21.00',
-        key: 'plan-6',
+        label: 'Late night bites',
         evening: true
       },
       {
         time: '1.00',
-        key: 'plan-7',
+        label: `<a href='/info?open=taxis'>Carriages</a>`,
         evening: true
       }
     ];
@@ -77,21 +76,14 @@ class ThePlan extends Component {
     return (
       <div className="plan">
         <h3>
-          <FormattedMessage id="Home.thePlan" />
+          The Plan
         </h3>
         {this.state && this.state.planArr.map((planItem, index) => (
           <div key={planItem.time}>
             {index ? <img src={index % 2 === 0 ? icon1 : icon2} /> : ''}
             <div className="plan-item">
               <span className="time">{planItem.time}</span>
-              <FormattedMessage id={'Home.' + planItem.key}>
-                {label => (
-                  <span
-                    className="plan"
-                    dangerouslySetInnerHTML={{ __html: label }}
-                  />
-                )}
-              </FormattedMessage>
+              <span className="plan" dangerouslySetInnerHTML={{ __html: planItem.label }}/>
             </div>
           </div>
         ))}

@@ -59,7 +59,7 @@ class Info extends Component {
           {
             label: 'Barnsley House',
             area: 'Barnsley',
-            phone: '01285 740000',
+            phone: '+44 1285 740000',
             website: 'barnsleyhouse.com',
             websiteLabel: 'barnsleyhouse.com',
             map: 'https://goo.gl/maps/nirjixk1CQU2'
@@ -67,7 +67,7 @@ class Info extends Component {
           {
             label: 'Kings Head Hotel',
             area: 'Cirencester',
-            phone: '44 (0) 1285 700 900',
+            phone: '+44 1285 700900',
             website: 'kingshead-hotel.co.uk',
             websiteLabel: 'kingshead-hotel.co.uk',
             map: 'https://goo.gl/maps/md3sK32yPmA2'
@@ -75,7 +75,7 @@ class Info extends Component {
           {
             label: 'De Vere Cotswolds',
             area: 'Cirencester',
-            phone: '+44 (0) 1285 864 000',
+            phone: '+44 1285 864000',
             website:
               'https://www.phcompany.com/de-vere/cotswold-water-park-hotel/?utm_source=google&utm_medium=local&utm_campaign=localSEO',
             websiteLabel: 'phcompany.com',
@@ -84,7 +84,7 @@ class Info extends Component {
           {
             label: 'Premier Inn',
             area: 'Cirencester',
-            phone: '0871 527 9674',
+            phone: '+44 871 5279674',
             website:
               'https://www.premierinn.com/gb/en/hotels/england/gloucestershire/cirencester/cirencester.html',
             websiteLabel: 'premierinn.com',
@@ -93,7 +93,7 @@ class Info extends Component {
           {
             label: 'The Fleece',
             area: 'Cirencester',
-            phone: '+44 (0) 1285 650231',
+            phone: '+44 1285 650231',
             website:
               'https://www.thefleececirencester.co.uk/?utm_source=google&utm_medium=gmb',
             websiteLabel: 'thefleececirencester.co.uk',
@@ -102,7 +102,7 @@ class Info extends Component {
           {
             label: 'The Bull Hotel',
             area: 'Fairford',
-            phone: '+44 (0) 1285 712535',
+            phone: '+44 1285 712535',
             website: 'http://www.thebullhotelfairford.co.uk/',
             websiteLabel: 'thebullhotelfairford.co.uk',
             map: 'https://goo.gl/maps/zgjmTRZkHgB2'
@@ -110,7 +110,7 @@ class Info extends Component {
           {
             label: 'Travelodge',
             area: 'Cirencester',
-            phone: '+44 (0) 871 984 6233',
+            phone: '+44 871 9846233',
             website:
               'https://www.travelodge.co.uk/hotels/86/Cirencester-hotel?WT.tsrc=GHA_Organic&utm_campaign=GHA_Cirencester&utm_medium=GHA_Organic&utm_source=google',
             websiteLabel: 'travelodge.co.uk',
@@ -119,7 +119,7 @@ class Info extends Component {
           {
             label: 'The Swan Hotel',
             area: 'Bibury',
-            phone: '+44 (0) 1285 740695',
+            phone: '+44 1285 740695',
             website: 'https://www.cotswold-inns-hotels.co.uk/the-swan-hotel//',
             websiteLabel: 'cotswold-inns-hotels.co.uk',
             map: 'https://goo.gl/maps/TEjTH1BiD6L2'
@@ -132,7 +132,7 @@ class Info extends Component {
           {
             label: 'The New Inn',
             area: 'Quenington',
-            phone: '+44 (0) 1285 750651',
+            phone: '+44 1285 750651',
             website: 'http://www.new-inn.co.uk/',
             websiteLabel: 'new-inn.co.uk',
             map: 'https://goo.gl/maps/mGdCQupn9k32'
@@ -140,7 +140,7 @@ class Info extends Component {
           {
             label: 'The Hare and Hound',
             area: 'Foss Cross',
-            phone: '+44 (0) 1285 720288',
+            phone: '+44 1285 720288',
             website: 'http://www.hareandhoundsinn.com/',
             websiteLabel: 'hareandhoundsinn.com',
             map: 'https://goo.gl/maps/P3q6x6KM5ez'
@@ -148,7 +148,7 @@ class Info extends Component {
           {
             label: 'The Masons Arms',
             area: 'Maysey Hampton',
-            phone: '+44 (0) 1285 850164',
+            phone: '+44 1285 850164',
             website: 'http://www.masonsarmsmeyseyhampton.com/',
             websiteLabel: 'masonsarmsmeyseyhampton.com',
             map: 'https://goo.gl/maps/DRoNUamFXkn'
@@ -156,7 +156,7 @@ class Info extends Component {
           {
             label: 'The Keepers Arms',
             area: 'Quenington',
-            phone: '+44 (0) 1285 750349',
+            phone: '+44 1285 750349',
             website: 'http://www.thekeepersarms.co.uk/',
             websiteLabel: 'thekeepersarms.co.uk',
             map: 'https://goo.gl/maps/GhEcJmXivKk'
@@ -169,7 +169,7 @@ class Info extends Component {
           {
             label: 'The Old Brewhouse',
             area: 'Cirencester',
-            phone: '+44 (0) 1285 656099',
+            phone: '+44 1285 656099',
             website: 'http://www.theoldbrewhouse.com/',
             websiteLabel: 'theoldbrewhouse.com',
             map: 'https://goo.gl/maps/8ArSae6A9bT2'
@@ -177,7 +177,7 @@ class Info extends Component {
           {
             label: 'Ivy House',
             area: 'Cirencester',
-            phone: '+44 (0) 1285 656626',
+            phone: '+44 1285 656626',
             website: 'http://www.ivyhousecotswolds.com/',
             websiteLabel: 'ivyhousecotswolds.com',
             map: 'https://goo.gl/maps/yryQnX2M4Km'
@@ -185,7 +185,7 @@ class Info extends Component {
           {
             label: 'Corinium House',
             area: 'Cirencester',
-            phone: '+44 (0) 1285 659711',
+            phone: '+44 1285 659711',
             website: 'https://www.coriniumhotel.com/',
             websiteLabel: 'coriniumhotel.com',
             map: 'https://goo.gl/maps/iAx6hUrFU8F2'
@@ -199,73 +199,73 @@ class Info extends Component {
         list: [
           {
             label: 'AAR Services',
-            phone: '01285 658189'
+            phone: '+44 1285 658189'
           },
           {
             label: 'Aristo Cabs',
-            phone: '01285 640926'
+            phone: '+44 1285 640926'
           },
           {
             label: 'A 2 B Taxis',
-            phone: '01285 655651',
+            phone: '+44 1285 655651',
             website: 'a2btaxisofcirencester.com'
           },
           {
             label: "Al's Cabs",
-            phone: '01285 651895'
+            phone: '+44 1285 651895'
           },
           {
             label: 'Bibury Taxi Company',
-            phone: '01285 740070',
+            phone: '+44 1285 740070',
             website: 'biburytaxicompany.co.uk'
           },
           {
             label: 'Cirencester Taxi',
-            phone: '01285 642767'
+            phone: '+44 1285 642767'
           },
           {
             label: 'Ciren Radio Cars',
-            phone: '01285 650850'
+            phone: '+44 1285 650850'
           },
           {
             label: 'Hills South Cerney Cabs',
-            phone: '01285 860181',
+            phone: '+44 1285 860181',
             website: 'southcerneycabs.co.uk'
           },
           {
             label: 'Home James',
-            phone: '01285 641339',
+            phone: '+44 1285 641339',
             website: 'homejamestaxi.co.uk'
           },
           {
             label: 'Ian Gaskins Taxi',
-            phone: '07469 216305'
+            phone: '+44 7469 216305'
           },
           {
             label: "Pete's Taxis",
-            phone: '07896 972908'
+            phone: '+44 7896 972908'
           },
           {
             label: 'Phoenix Cabs',
-            phone: '07519 126121',
+            phone: '+44 7519 126121',
             website: 'phoenixcabsofcirencester.co.uk'
           },
           {
             label: 'Reliance Taxis',
-            phone: '07787 790644',
+            phone: '+44 7787 790644',
             website: 'reliancetaxiscirencester.co.uk'
           },
           {
             label: 'Terry Bateman',
-            phone: '01285 642767'
+            phone: '+44 1285 642767'
           },
           {
             label: '2 & Fro',
-            phone: '01285 641973'
+            phone: '+44 1285 641973'
           },
           {
             label: 'Where 2',
-            phone: '01285 656148',
+            phone: '+44 1285 656148',
             website: 'cirencestertaxi.com'
           }
         ]
@@ -278,14 +278,22 @@ class Info extends Component {
     const open = url.searchParams.get('open');
 
     if (open) {
-      this.setState({
-        menu: this.state.menu.map(item => {
-          if (item.key === open) {
-            item.open = true;
-          }
-          return item;
-        })
-      });
+      this.openSection(open);
+    }
+  }
+
+  openSection(section, event) {
+    this.setState({
+      menu: this.state.menu.map(item => {
+        if (item.key === section) {
+          item.open = true;
+        }
+        return item;
+      })
+    });
+
+    if (event) {
+      event.preventDefault();
     }
   }
 
@@ -316,9 +324,7 @@ class Info extends Component {
           <a href="https://goo.gl/maps/tbd7Z4wmJzF2" target="_blank">
             St. Mary&apos;s Church
           </a>
-          <span className="label-with-icon">
-            <span>Fairford, GL7 4AF</span> <a href="#">{svgIcon()}</a>
-          </span>
+          <div>Fairford, GL7 4AF</div>
         </p>
 
         <p>
@@ -344,10 +350,7 @@ class Info extends Component {
   reception() {
     return (
       <div className="info-content">
-        <div className="label-with-icon">
-          <span>Cripps Barn</span>{' '}
-          <a href="https://goo.gl/maps/tQYiJWVxPps">{svgIcon()}</a>
-        </div>
+        <a href="https://goo.gl/maps/tQYiJWVxPps">Cripps Barn</a>
         <div>Fosscross Ln,</div>
         <div>Bibury, GL7 5BA</div>
 
@@ -355,7 +358,7 @@ class Info extends Component {
         <p>
           Carriages at 1am.
           <br />
-          Make sure you book your <a href="#">taxi</a> in advance.{' '}
+          Make sure you book your <a href="#" onClick={this.openSection.bind(this, 'taxis')}>taxi</a> in advance.
         </p>
       </div>
     );
@@ -405,7 +408,7 @@ class Info extends Component {
       <div className="info-content">
         <p>Make sure you book your taxi as early as possible. Getting a taxi on the day is likely to be very difficult.</p>
         {this.areDayGuest() &&
-        'You won\'t need a taxi to take you from the church to the reception at Cripps Barn, we\'ll be giving everyone a lift!'}
+        <p>You won't need a taxi to take you from the church to the reception at Cripps Barn, we'll be giving everyone a lift!</p>}
         {this.itemLister(this.taxis)}
       </div>
     );

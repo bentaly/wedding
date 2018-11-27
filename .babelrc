@@ -1,11 +1,3 @@
 {
-  "presets": ["react-app", "env"],
-  "plugins": [
-    [
-      "react-intl",
-      {
-        "messagesDir": "./public/messages/"
-      }
-    ]
-  ]
+  "presets": ["react-app", "env"]
 }
