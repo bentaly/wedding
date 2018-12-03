@@ -59,7 +59,7 @@ class ThePlan extends Component {
       },
       {
         time: '16.00',
-        label: 'Lunch is served'
+        label: 'Food is served'
       },
       {
         time: '19.00',
