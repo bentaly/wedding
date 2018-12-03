@@ -196,12 +196,14 @@ class RSVP extends Component {
 
   areDayGuest() {
     const guest = window.localStorage.getItem('cambenweddingguest');
-    return !JSON.parse(guest).evening;
+    const parsedGuest = JSON.parse(guest);
+    return !parsedGuest || !parsedGuest.evening;
   }
 
   canAddGuest() {
     const guest = window.localStorage.getItem('cambenweddingguest');
-    return JSON.parse(guest).guest;
+    const parsedGuest = JSON.parse(guest);
+    return parsedGuest && parsedGuest.guest;
   }
 
   render() {

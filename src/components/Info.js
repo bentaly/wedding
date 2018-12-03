@@ -298,7 +298,8 @@ class Info extends Component {
 
   areDayGuest() {
     const guest = window.localStorage.getItem('cambenweddingguest');
-    return !JSON.parse(guest).evening;
+    const parsedGuest = JSON.parse(guest);
+    return !parsedGuest || !parsedGuest.evening;
   }
 
   dressCode() {
@@ -327,7 +328,10 @@ class Info extends Component {
         </p>
 
         <p>
-          Time: 1pm <br />
+          Sunday 19th May 2019 <br />
+          1:00pm
+        </p>
+        <p>
           Kindly arrive by 12:50pm so there is enough time to say hello and be
           seated before the ceremony starts.
         </p>
@@ -349,15 +353,22 @@ class Info extends Component {
   reception() {
     return (
       <div className="info-content">
-        <a href="https://goo.gl/maps/tQYiJWVxPps" target="_blank">Cripps Barn</a>
+        <a href="https://goo.gl/maps/tQYiJWVxPps" target="_blank">
+          Cripps Barn
+        </a>
         <div>Fosscross Ln,</div>
         <div>Bibury, GL7 5BA</div>
 
-        <p>Time: {this.areDayGuest() ? '2:30pm' : '7:00pm' }</p>
+        {this.areDayGuest() ? <p>2:30pm</p> : <p>Sunday 19th May 2019<br />7:00pm</p>}
+
         <p>
           Carriages at 1am.
           <br />
-          Make sure you book your <a href="#" onClick={this.openSection.bind(this, 'taxis')}>taxi</a> in advance.
+          Make sure you book your{' '}
+          <a href="#" onClick={this.openSection.bind(this, 'taxis')}>
+            taxi
+          </a>{' '}
+          in advance.
         </p>
       </div>
     );
@@ -383,16 +394,26 @@ class Info extends Component {
   travel() {
     return (
       <div className="info-content">
+        <p>The best way to get there is by car.</p>
         <p>
-          The best way to get there is by car.
+          If you're taking the train, the nearest train station is{' '}
+          <a
+            href="https://www.google.co.uk/maps/place/Kemble+Station/@51.6769305,-2.02504,17z/data=!3m1!4b1!4m5!3m4!1s0x487114a7fbe02e87:0xcf94d40bdf649303!8m2!3d51.6769272!4d-2.0228513"
+            target="_blank"
+          >
+            Kemble
+          </a>
+          . From there, the easiest way to get around would be by taxi - public
+          transport around the Cotswolds is a little bit tricky, although still
+          possible.
         </p>
         <p>
-          If you're taking the train, the nearest train station is <a href="https://www.google.co.uk/maps/place/Kemble+Station/@51.6769305,-2.02504,17z/data=!3m1!4b1!4m5!3m4!1s0x487114a7fbe02e87:0xcf94d40bdf649303!8m2!3d51.6769272!4d-2.0228513" target="_blank">Kemble</a>. From there, the easiest way
-          to get around would be by taxi - public transport around the Cotswolds
-          is a little bit tricky, although still possible.</p>
-        <p>
           If you&apos;re planning to stay for the weekend, there are lovely
-          places around to visit. <a href="https://livingnomads.com/2016/07/bibury-travel-guide" target="_blank">
+          places around to visit.{' '}
+          <a
+            href="https://livingnomads.com/2016/07/bibury-travel-guide"
+            target="_blank"
+          >
             Bibury
           </a>
           , considered the most beautiful village in Britain, is nearby and
@@ -405,9 +426,16 @@ class Info extends Component {
   taxis() {
     return (
       <div className="info-content">
-        <p>Make sure you book your taxi as early as possible. Getting a taxi on the day is likely to be very difficult.</p>
-        {this.areDayGuest() &&
-        <p>You won't need a taxi to take you from the church to the reception at Cripps Barn, we'll be giving everyone a lift!</p>}
+        <p>
+          Make sure you book your taxi as early as possible. Getting a taxi on
+          the day is likely to be very difficult.
+        </p>
+        {this.areDayGuest() && (
+          <p>
+            You won't need a taxi to take you from the church to the reception
+            at Cripps Barn, we'll be giving everyone a lift!
+          </p>
+        )}
         {this.itemLister(this.taxis)}
       </div>
     );
@@ -478,7 +506,9 @@ class Item extends Component {
           {this.props.data.area && (
             <div>
               <span>{this.props.data.area}</span>
-              <a href={this.props.data.map} target="_blank">{svgIcon()}</a>
+              <a href={this.props.data.map} target="_blank">
+                {svgIcon()}
+              </a>
             </div>
           )}
           <a href={'tel:' + this.props.data.phone}>{this.props.data.phone}</a>

@@ -9,6 +9,7 @@ import Info from './Info';
 import GiftRegistry from './GiftRegistry';
 import LoginScreen from './Login';
 import Admin from './Admin';
+import LogOut from './LogOut';
 import header from '../../public/images/header.png';
 
 class SiteContainer extends Component {
@@ -39,13 +40,18 @@ class SiteContainer extends Component {
       {
         route: '/admin',
         component: <Admin />
+      },
+      {
+        route: '/logout',
+        component: <LogOut />
       }
     ];
   }
 
   componentDidMount() {
     const guest = window.localStorage.getItem('cambenweddingguest');
-    this.changeGuestType(JSON.parse(guest));
+    const parsedGuest = JSON.parse(guest);
+    this.changeGuestType(parsedGuest);
   }
 
   changeGuestType(guest) {
@@ -74,10 +80,10 @@ class SiteContainer extends Component {
           <div className="app">
             <header className="app-header">
               <img src={header} />
-              <h1 className="app-title">
-                Camila &amp; Benjamin
-              </h1>
-              <Navigation routes={this.routes.filter(route => route.route !== '/admin')} />
+              <h1 className="app-title">Camila &amp; Benjamin</h1>
+              <Navigation
+                routes={this.routes.filter(route => route.label)}
+              />
             </header>
             <RoutingComponent routes={this.routes} />
           </div>

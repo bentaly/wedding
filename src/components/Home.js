@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import icon1 from '../../public/images/icon_1.png';
 import icon2 from '../../public/images/icon_2.png';
 import bg from '../../public/images/bg.jpg';
+import date from '../../public/images/date.png';
 
 class Home extends Component {
   render() {
@@ -12,6 +13,7 @@ class Home extends Component {
         <img src={bg} />
         <div className="main-content">
           <div className="welcome">
+            <img src={date} />
             <h3>We're tying the knot!</h3>
             <p>
               The day is fast approaching and we can't wait to celebrate it with
@@ -82,7 +84,8 @@ class ThePlan extends Component {
     ];
 
     const guest = window.localStorage.getItem('cambenweddingguest');
-    if (JSON.parse(guest).evening) {
+    const parsedGuest = JSON.parse(guest);
+    if (parsedGuest && parsedGuest.evening) {
       planArr = planArr.filter(plan => plan.evening);
     }
 
