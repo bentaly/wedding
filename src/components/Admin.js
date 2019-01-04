@@ -13,6 +13,7 @@ class Admin extends Component {
       .then(res => res.json())
       .then(
         result => {
+          result.sort((a, b) => a.group - b.group);
           this.setState({
             guests: result
           });
